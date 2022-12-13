@@ -1,0 +1,5 @@
+deeplake
+numpy
+timm
+einops
+pycocotools
