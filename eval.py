@@ -7,7 +7,9 @@ import time
 from datasets.data_loader import valLoader 
 
 
-
+src="hub://aismail2/cucumber_OD"
+ds = hub.load(src)
+print(f"The size of Test Loader is {len(ds)}")
 val_dataset = valLoader(data=ds)
 val_loader = torch.utils.data.DataLoader(dataset=val_dataset, num_workers=1, batch_size=1, shuffle=False)
 coco = get_coco_api_from_dataset(val_loader.dataset)
