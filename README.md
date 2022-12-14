@@ -2,7 +2,7 @@
 
 A ground up implementation of instance segmentation netowrk in pytorch with end goal of deploying in low powered edge device like Intel neural compute stick and rasberry pie.
 
-# Objects as Points
+# Tiny Instance Segmentation Model
 Object detection, 3D detection, and pose estimation using center point detection:  
 
 
