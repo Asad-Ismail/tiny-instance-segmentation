@@ -3,7 +3,7 @@
 A ground up implementation of instance segmentation netowrk in pytorch with end goal of deploying in low powered edge device like Intel neural compute stick and rasberry pie.
 
 # Tiny Instance Segmentation Model
-Object detection, 3D detection, and pose estimation using center point detection:  
+Object detection and Instance Segmentation Model
 
 
 Contact: [asadismaeel@gmail.com]. Any questions, discussions or contributions are highly welcomed! 
