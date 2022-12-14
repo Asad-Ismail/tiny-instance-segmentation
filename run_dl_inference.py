@@ -32,6 +32,9 @@ model.cpu()
 model.eval()
 
 if __name__=="__main__":
+    src="hub://aismail2/cucumber_OD"
+    ds = hub.load(src)
+    print(f"The size of Test Loader is {len(ds)}")
     test_loader = DataLoader(dataset=data,  batch_size=1,num_workers=4, shuffle=False)
     for i,batch in tqdm(enumerate(test_loader)):
         preds=model(batch)
@@ -54,7 +57,6 @@ if __name__=="__main__":
         #plt.imshow(pred_cats.detach().squeeze(0).numpy())
         #plt.figure(3)
         #plt.imshow(img)
-        #break
         cv2.imwrite(f"{vispath}/{i}_seg.png",img)
         cv2.imwrite(f"{vispath}/{i}_cent.png",pred_cats.detach().squeeze(0).numpy()*20)
     
