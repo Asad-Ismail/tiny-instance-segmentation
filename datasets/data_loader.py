@@ -102,13 +102,92 @@ class DataLoader(data.Dataset):
             for j in range(4):
                 tgt_boxes[pt[0]][pt[1]][j]= boxes[i][j]
         data={}
-        data["img"]=preprocess((torch.from_numpy(tgt_img).float()/255))
+        data["img"]=preprocess((torch.from_numpy(tgt_img).float()))
         data["pts"]=torch.tensor(pts)
         data["offs"]=torch.tensor(offs).float()
         data["center"]=torch.from_numpy(tgt_label).float()
         data["bboxs"]=torch.from_numpy(tgt_boxes).float()
         data["msks"]=torch.from_numpy(tgt_masks).float()   
         return data
+    
+    def __len__(self):
+        return len(ds)
+
+
+class valLoader(data.Dataset):
+    def __init__(self, img_sz=512,grid_sz=64,seg_sz=64,data=None):
+        super(valLoader, self).__init__()
+        self.img_sz=img_sz
+        self.grid_sz=grid_sz
+        self.seg_sz=seg_sz
+        self.imgs=[]
+        self.label_pts=[]
+        self.label_off=[]
+        self.label_masks=[]
+        self.label_boxes=[]
+        self.getData(data)
+        
+    def getData(self,data):
+        for i,d in tqdm(enumerate(data)):
+            image=d.images.numpy()
+            image=cv2.resize(image,(self.img_sz,self.img_sz))
+            masks=d.masks.numpy().astype(np.uint8)*255
+            img_cs=set(())
+            mod_masks=[]
+            mod_boxes=[]
+            mod_centers=[]
+            mod_offsets=[]
+            grid=np.zeros((self.grid_sz,self.grid_sz),dtype=np.uint8)
+            for j in range(masks.shape[-1]):
+                mask=masks[...,j]
+                mask=cv2.resize(mask,(self.img_sz,self.img_sz),cv2.INTER_NEAREST)
+                cY,cX=find_center(mask)
+                if not mask[cY][cX]:
+                    cY,cX=fixed_points(cX,cY,mask)
+                cY,cX,offy,offx,img_cs=get_quantized_center(cX,cY,mask,dst_size=self.grid_sz,p_sofar=img_cs)
+                mod_centers.append([cY,cX])
+                mod_offsets.append([offy,offx])
+                nzeros=np.nonzero(mask)
+                ys=nzeros[0]
+                xs=nzeros[1]
+                ymin=min(ys)
+                ymax=max(ys)
+                xmin=min(xs)
+                xmax=max(xs)
+                croped_mask = mask[ymin : ymax , xmin: xmax]
+                ## resize masks to eventual size of masks to be predicted
+                croped_mask=cv2.resize(croped_mask,(self.seg_sz,self.seg_sz),cv2.INTER_NEAREST)
+                mod_masks.append(croped_mask)            
+                mod_boxes.append([xmin,ymin,xmax,ymax])
+                # Considering only one calss can add dict with value corresponding to class for multiclass
+            self.label_pts.append(mod_centers)
+            self.label_off.append(mod_offsets)
+            self.imgs.append(image)
+            self.label_masks.append(mod_masks)
+            self.label_boxes.append(mod_boxes)
+        
+    def __getitem__(self, index):
+        
+        tgt_img = self.imgs[index]
+        masks = self.label_masks[index]
+        boxes = self.label_boxes[index]
+        rgb=preprocess((torch.from_numpy(tgt_img).float()))
+        # There is only one class for now
+        labels= torch.ones((len(masks),), dtype=torch.int64)
+        iscrowd = torch.zeros((len(labels),), dtype=torch.int64)
+        ## convert to tensors
+        masks = torch.as_tensor(masks, dtype=torch.uint8)
+        boxes = torch.as_tensor(boxes, dtype=torch.float32)
+        image_id = torch.tensor([index])
+        area = (boxes[:, 3] - boxes[:, 1]) * (boxes[:, 2] - boxes[:, 0])
+        target = {}
+        target["boxes"] = boxes
+        target["masks"] = masks//255
+        target["image_id"] = image_id
+        target["area"] = area
+        target["iscrowd"] = iscrowd
+        target["labels"] = labels
+        return rgb, target
     
     def __len__(self):
         return len(ds)
