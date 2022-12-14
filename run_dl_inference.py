@@ -12,7 +12,6 @@ import matplotlib.pyplot as plt
 from torch.utils.data import DataLoader
 test_loader = DataLoader(dataset=data,  batch_size=1,num_workers=4, shuffle=True)
 
-
 def vis_results(img,masks):
     img=postprocess(img)
     for i in range(len(masks)):

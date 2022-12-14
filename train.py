@@ -6,7 +6,6 @@ import cv2
 from tqdm import tqdm
 import torch
 import torchvision
-
 import logging
 
 

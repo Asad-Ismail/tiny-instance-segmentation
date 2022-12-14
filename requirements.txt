@@ -3,3 +3,4 @@ numpy
 timm
 einops
 pycocotools
+opencv-python

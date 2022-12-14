@@ -1,8 +1,14 @@
 import timm
 from einops import  repeat
-
+import torch
 import torch.nn.functional as F
 import torch.nn as nn
+from torchvision.ops import roi_align
+
+def min_max_norm(x,a,b):
+    min_x=x.min()
+    max_x=x.max()
+    return a+((x-min_x)*(b-a)/(max_x-min_x))
 
 def Upsample(dim):
     return nn.ConvTranspose2d(dim, dim, 4, 2, 1)
@@ -147,8 +153,6 @@ class tinyModel(nn.Module):
             self.seg_head.add_module(f"relu_{i}",nn.ReLU())
         #self.upsample=Upsample(256)
         self.seg=nn.Conv2d(interchn,1,1,padding=0)    
-        
-        self.DLoss=BinaryDiceLoss()
         
     def forward(self,inp: dict) -> torch.Tensor:
         ## For training expects the labels to be present also

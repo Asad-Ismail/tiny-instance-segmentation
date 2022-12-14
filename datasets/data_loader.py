@@ -3,13 +3,15 @@ import torch
 import torch.utils.data as data
 import torch
 from torch.utils.data import DataLoader
+import numpy as np
 
 
 
 mean=torch.tensor([0.4850, 0.4560, 0.4060])
 std=torch.tensor([0.2290, 0.2240, 0.2250])
 
-transform = Compose([
+preprocess = Compose([
+            Lambda(lambda t: t/255.),
             Lambda(lambda t: t.permute(2, 0, 1)), # HWC to CHW
             Normalize(mean, std)
 ])
@@ -100,7 +102,7 @@ class DataLoader(data.Dataset):
             for j in range(4):
                 tgt_boxes[pt[0]][pt[1]][j]= boxes[i][j]
         data={}
-        data["img"]=transform((torch.from_numpy(tgt_img).float()/255))
+        data["img"]=preprocess((torch.from_numpy(tgt_img).float()/255))
         data["pts"]=torch.tensor(pts)
         data["offs"]=torch.tensor(offs).float()
         data["center"]=torch.from_numpy(tgt_label).float()
