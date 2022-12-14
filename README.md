@@ -2,7 +2,7 @@
 
 A ground up implementation of instance segmentation netowrk in pytorch with end goal of deploying in low powered edge device like Intel neural compute stick and rasberry pie.
 
-# Tiny Instance Segmentation Model
+# Tiny ISM:
 Object detection and Instance Segmentation Model
 
 
