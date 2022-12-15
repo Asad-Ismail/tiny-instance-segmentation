@@ -9,14 +9,14 @@ from datasets.data_loader import preprocess, postprocess
 from utils.helpers import vis_results,vis_masks,vis_boxes
 import argparse
 from torch.utils.data import DataLoader
+import deeplake as hub
 
 # Parse Args
 parser = argparse.ArgumentParser()
-resnet18_inst.pth
 parser.add_argument("--image",default="test.png",help="Input Image")
 parser.add_argument("--size",default=512,type=int,help="Image size used for training model")
 parser.add_argument("--vispath", default="vis_results",help="Write visualizations to this location")
-parser.add_argument("--weight_path",default="./weights/resnet18seg.pth",type=str,help="Image size used for training model")
+parser.add_argument("--weight_path",default="./weights/resnet18_inst.pth",type=str,help="Image size used for training model")
 args = parser.parse_args()
 
 img_path = args.image
