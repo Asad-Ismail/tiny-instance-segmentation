@@ -34,8 +34,6 @@ def collate_batch(batch):
         inputs[k]=inps
     return inputs
 
-
-
 def fixed_points(x,y,mask):
     """Fixed Mask if centroid is not in the middle go to left to find one valid point"""
     h,w=mask.shape
