@@ -13,6 +13,7 @@ from datasets.data_loader import DataLoader as dLoader
 from datasets.data_loader import collate_batch
 import os, datetime
 from models.tinyism import tinyModel
+from torch.utils.data import DataLoader
 datestring = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
 parser = argparse.ArgumentParser()
@@ -20,6 +21,7 @@ parser.add_argument("--dataset",default="hub://aismail2/cucumber_OD",help="Activ
 parser.add_argument("--size",default=512,type=int,help="Image size used for training model")
 parser.add_argument("--epochs",default=500,type=int,help="Image size used for training model")
 parser.add_argument("--device", default="cuda",help="Device to Train Model")
+parser.add_argument("--batch_sz", default=16,type=int,help="Device to Train Model")
 parser.add_argument("--pretrain",default="",type=str,help="Pretrained weights")
 parser.add_argument("--outdir",default="./output",type=str,help="Output of weights")
 
@@ -30,6 +32,13 @@ dname = args.device
 pretrain= args.pretrain
 outdir=args.outdir
 epochs=args.epochs
+BATCH_SIZE=args.batch_sz
+
+outdir=f"{outdir}/{datestring}"
+print(f"Trained Weight are stored in {outdir}")
+os.makedirs(outdir)
+assert os.path.exists(outdir), "Output dir does not exist"
+
 # Model
 model=tinyModel(posEncoding=False)
 if pretrain:
@@ -39,12 +48,12 @@ model.to(device)
 optimizer = optim.Adam(model.parameters(), lr=1e-4)
 model.train()
 
-
 if __name__=="__main__":
     ds = hub.load(data_path)
     data=dLoader(ds=ds)
-    data_loader = DataLoader(dataset=data, batch_size=BATCH_SIZE,num_workers=4,collate_fn=collate_batch,shuffle=True)
+    data_loader = DataLoader(dataset=data, batch_size=BATCH_SIZE,num_workers=1,collate_fn=collate_batch,shuffle=True)
     visidx=10
+    saveepoch=2
     for epoch in range(0,epochs):  # loop over the dataset multiple times
         running_loss = 0.0
         for i,batch in tqdm(enumerate(data_loader)):
@@ -64,8 +73,9 @@ if __name__=="__main__":
             labels={"pts":gt_centers,"offs":gt_offsets,"bboxs":gt_boxes,"center":gt_cats,"msks":gt_msks}
             inp["labels"]=labels
             # Prediction of Model
+
             pred_dict=model(inp)
-            
+
             losses=pred_dict["loss"]
             loss=losses["Total_Loss"]
             
@@ -73,14 +83,14 @@ if __name__=="__main__":
             optimizer.step()
             running_loss += loss.item()
             
-            if i % pidx == pidx-1:
-                print(f'[{epoch + 1}, {i + 1:5d}] Running Loss: {running_loss / pidx:.3f}')
+            if i % visidx == visidx-1:
+                print(f'[{epoch + 1}, {i + 1:5d}] Running Loss: {running_loss / visidx:.3f}')
                 #print(f"LR,{scheduler._last_lr}")
                 for k,v in losses.items():
                     print(f"{k}: {v.item()}")
                 running_loss = 0.0
                 
             #scheduler.step()
-        if epoch % 2 == 1:
-            PATH=f".{outdir}/datestring/{epoch}.pth"
+        if epoch % saveepoch == 1:
+            PATH=f"{outdir}/{epoch}.pth"
             torch.save(model.state_dict(), PATH)

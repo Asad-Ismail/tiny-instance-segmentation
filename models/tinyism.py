@@ -4,6 +4,9 @@ import torch
 import torch.nn.functional as F
 import torch.nn as nn
 from torchvision.ops import roi_align
+import sys,os
+sys.path.append(os.path.abspath('../losses'))
+from losses import *
 
 def min_max_norm(x,a,b):
     min_x=x.min()
@@ -43,56 +46,6 @@ def process_preds(preds,grid_sz=64,cat_th=0.4):
     labels=torch.ones_like(scores).to(torch.long) 
     preds={"centers":pred_cats,"boxes":pred_boxes,"scores":scores,"labels":labels}
     return preds
-
-
-def prepare_data(gts,preds,stride=8,device="cpu"):    
-    gt_pts=gts["pts"]
-    gt_offs=gts["offs"]
-    gt_boxes=gts["bboxs"]
-    gt_msks=gts["msks"]
-    gt_centers=gts["center"]
-    
-    pred_offs=preds["offs"]
-    pred_szs=preds["boxes"]
-    
-    fil_gt_box=[]
-    fil_tgt_box=[] # For keeping the processed distance from centers
-    fil_gt_msks=[]
-    fil_gt_cts=[]
-    fil_gt_offs=[]
-    
-    fil_pred_szs=[]
-    fil_pred_offs=[]
-    
-    for i,pts in enumerate(gt_pts):
-        fil_gt_box.append(gt_boxes[i,pts[:,0],pts[:,1]])
-        fil_pred_szs.append(pred_szs[i,pts[:,0],pts[:,1]])
-        
-        mskidx=pts[:,0]*64+pts[:,1]      
-        fil_gt_msks.append(gt_msks[i,mskidx])
-        # convert y,x to x,y
-        fil_gt_offs.append(torch.fliplr(gt_offs[i]))
-        fil_pred_offs.append(pred_offs[i,pts[:,0],pts[:,1]])
-        
-        ## convert y,x to x,y for box adjustments 
-        fil_gt_cts.append(torch.fliplr(pts))
-        
-        pboxesmin=(fil_gt_cts[-1]+fil_gt_offs[-1])-(fil_gt_box[-1][...,:2]/stride)
-        pboxesmax=(fil_gt_box[-1][...,2:]/stride)-(fil_gt_cts[-1]+fil_gt_offs[-1])
-        
-        pboxes=torch.hstack((pboxesmin,pboxesmax))
-        fil_tgt_box.append(pboxes)
-
-    tgt_box=torch.concatenate(fil_tgt_box).to(device)
-    tgt_msks=torch.concatenate(fil_gt_msks).to(device)
-    
-    pred_szs=torch.concatenate(fil_pred_szs).to(device)
-    pred_offs=torch.concatenate(fil_pred_offs).to(device)
-    
-    tgt_offs=torch.concatenate(fil_gt_offs).to(device)
-    
-    return pred_szs,tgt_box,pred_offs,tgt_offs,tgt_msks,fil_gt_box
-
 
 def posEncoding(x):
     b=x.shape[0]
@@ -158,7 +111,6 @@ class tinyModel(nn.Module):
         ## For training expects the labels to be present also
         img=inp["img"]
         x=self.backbone(img)
-
         if self.posEncoding:
             x=posEncoding(x)
 
@@ -181,7 +133,8 @@ class tinyModel(nn.Module):
             assert "labels" in inp, "Labels must exist for training"
             loss_dict,tgt_msks,boxlist=calc_loss(inp["labels"],preds)
             pred_msks=roi_align(img,boxlist,output_size=64)
-            pred_msks=posEncoding(pred_msks)
+            if self.posEncoding:
+                pred_msks=posEncoding(pred_msks)
             pred_msks=self.seg_head(pred_msks)
             pred_msks=self.seg(pred_msks)
             # Mask losses
@@ -199,7 +152,8 @@ class tinyModel(nn.Module):
             preds=process_preds(preds)
             boxlist=[preds["boxes"]]
             pred_msks=roi_align(inp["img"],boxlist,output_size=64)
-            pred_msks=posEncoding(pred_msks)
+            if self.posEncoding:
+                pred_msks=posEncoding(pred_msks)
             pred_msks=self.seg_head(pred_msks)
             pred_msks=self.seg(pred_msks)
             pred_msks=pred_msks.sigmoid()

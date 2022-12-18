@@ -3,6 +3,27 @@ import numpy as np
 import cv2
 import torch.nn.functional as F
 
+
+@torch.no_grad()
+def throughput(data_loader, model, logger):
+    model.eval()
+    for idx, (images, _) in enumerate(data_loader):
+        images = images.cuda(non_blocking=True)
+
+        batch_size = images.shape[0]
+        for i in range(50):
+            model(images)
+        torch.cuda.synchronize()
+        logger.info(f"throughput averaged with 30 times")
+        tic1 = time.time()
+        for i in range(30):
+            model(images)
+        torch.cuda.synchronize()
+        tic2 = time.time()
+        throughput = 30 * batch_size / (tic2 - tic1)
+        logger.info(f"batch_size {batch_size} throughput {throughput}")
+        return
+
 def vis_results(img,masks):
     img=postprocess(img)
     for i in range(len(masks)):
