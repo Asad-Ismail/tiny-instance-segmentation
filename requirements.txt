@@ -4,3 +4,5 @@ timm
 einops
 pycocotools
 opencv-python
+yacs
+termcolor

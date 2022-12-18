@@ -5,16 +5,15 @@ import numpy as np
 import torch
 import torch.backends.cudnn as cudnn
 import torch.distributed as dist
-from timm.loss import LabelSmoothingCrossEntropy, SoftTargetCrossEntropy
 from timm.utils import accuracy, AverageMeter
 from train.config import get_config
-from data import build_loader
 from train.lr_scheduler import build_scheduler
 from train.logger import create_logger
-from utils import load_checkpoint, save_checkpoint, get_grad_norm, auto_resume_helper, reduce_tensor, save_latest, update_model_ema, unwrap_model
+from utils.helpers import load_checkpoint, save_checkpoint, get_grad_norm, auto_resume_helper, reduce_tensor, save_latest, update_model_ema, unwrap_model
 import copy
 from train.optimizer import build_optimizer
 from models.repvggplus import create_RepVGGplus_by_name
+import os
 
 
 def parse_option():
@@ -42,7 +41,7 @@ def parse_option():
                         help="whether to use gradient checkpointing to save memory")
     parser.add_argument('--amp-opt-level', type=str, default='O0', choices=['O0', 'O1', 'O2'],  #TODO Note: use amp if you have it
                         help='mixed precision opt level, if O0, no amp is used')
-    parser.add_argument('--output', default='/your/path/to/save/dir', type=str, metavar='PATH',
+    parser.add_argument('--output', default='./output/repvggplus', type=str, metavar='PATH',
                         help='root of output folder, the full path is <output>/<model_name>/<tag> (default: output)')
     parser.add_argument('--tag', help='tag of experiment')
     parser.add_argument('--eval', action='store_true', help='Perform evaluation only')
@@ -271,20 +270,7 @@ import os
 
 if __name__ == '__main__':
     args, config = parse_option()
-
-    if config.AMP_OPT_LEVEL != "O0":
-        assert amp is not None, "amp not installed!"
-
-    if 'RANK' in os.environ and 'WORLD_SIZE' in os.environ:
-        rank = int(os.environ["RANK"])
-        world_size = int(os.environ['WORLD_SIZE'])
-    else:
-        rank = -1
-        world_size = -1
-    torch.cuda.set_device(config.LOCAL_RANK)
-    torch.distributed.init_process_group(backend='nccl', init_method='env://', world_size=world_size, rank=rank)
-    torch.distributed.barrier()
-    seed = config.SEED + dist.get_rank()
+    seed = config.SEED 
 
     torch.manual_seed(seed)
     np.random.seed(seed)
@@ -292,9 +278,9 @@ if __name__ == '__main__':
 
     if not config.EVAL_MODE:
         # linear scale the learning rate according to total batch size, may not be optimal
-        linear_scaled_lr = config.TRAIN.BASE_LR * config.DATA.BATCH_SIZE * dist.get_world_size() / 256.0
-        linear_scaled_warmup_lr = config.TRAIN.WARMUP_LR * config.DATA.BATCH_SIZE * dist.get_world_size() / 256.0
-        linear_scaled_min_lr = config.TRAIN.MIN_LR * config.DATA.BATCH_SIZE * dist.get_world_size() / 256.0
+        linear_scaled_lr = config.TRAIN.BASE_LR * config.DATA.BATCH_SIZE / 256.0
+        linear_scaled_warmup_lr = config.TRAIN.WARMUP_LR * config.DATA.BATCH_SIZE  / 256.0
+        linear_scaled_min_lr = config.TRAIN.MIN_LR * config.DATA.BATCH_SIZE  / 256.0
         # gradient accumulation also need to scale the learning rate
         if config.TRAIN.ACCUMULATION_STEPS > 1:
             linear_scaled_lr = linear_scaled_lr * config.TRAIN.ACCUMULATION_STEPS
