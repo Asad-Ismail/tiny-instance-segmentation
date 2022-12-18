@@ -11,14 +11,14 @@ import deeplake as hub
 import argparse
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--weight_path",default="./weights/resnet18_inst.pth",type=str,help="Image size used for training model")
+parser.add_argument("--weight_path",default="./weights/resnet18_inst_nopos.pth",type=str,help="Image size used for training model")
 args = parser.parse_args()
 
 weightpath= args.weight_path
 
 
 device=torch.device('cpu')
-model=tinyModel()
+model=tinyModel(posEncoding=False)
 model.load_state_dict(torch.load(weightpath,map_location=torch.device('cpu')))
 model.cpu()
 
