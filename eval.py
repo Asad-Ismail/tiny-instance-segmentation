@@ -12,6 +12,7 @@ import argparse
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--weight_path",default="./weights/resnet18_inst_nopos.pth",type=str,help="Image size used for training model")
+
 args = parser.parse_args()
 
 weightpath= args.weight_path

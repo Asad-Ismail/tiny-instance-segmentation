@@ -14,6 +14,11 @@ import copy
 from train.optimizer import build_optimizer
 from models.repvggplus import create_RepVGGplus_by_name
 import os
+import deeplake as hub
+from datasets.data_loader import DataLoader as dLoader
+from datasets.data_loader import collate_batch
+from torch.utils.data import DataLoader
+from models.repvgg_tinyism import tinyModel
 
 
 def parse_option():
@@ -26,9 +31,9 @@ def parse_option():
     )
 
     # easy config modification
-    parser.add_argument('--arch', default=None, type=str, help='arch name')
-    parser.add_argument('--batch-size', default=16, type=int, help="batch size for single GPU")
-    parser.add_argument('--data-path', default='/your/path/to/dataset', type=str, help='path to dataset')
+    parser.add_argument('--arch', default="RepVGGplus-tinyism", type=str, help='arch name')
+    parser.add_argument('--batch-size', default=4, type=int, help="batch size for single GPU")
+    parser.add_argument('--data-path', default='hub://aismail2/cucumber_OD', type=str, help='path to dataset')
     parser.add_argument('--scales-path', default=None, type=str, help='path to the trained Hyper-Search model')
     parser.add_argument('--zip', action='store_true', help='use zipped dataset instead of folder dataset')
     parser.add_argument('--cache-mode', type=str, default='part', choices=['no', 'full', 'part'],
@@ -57,13 +62,14 @@ def parse_option():
     return args, config
 
 def main(config):
-    dataset_train, dataset_val, data_loader_train, data_loader_val, mixup_fn = build_loader(config)
 
     logger.info(f"Creating model:{config.MODEL.ARCH}")
 
-    model = create_RepVGGplus_by_name(config.MODEL.ARCH, deploy=False, use_checkpoint=args.use_checkpoint)
+    model = tinyModel(posEncoding=True)
+    ds = hub.load(config.DATA.DATA_PATH)
+    data=dLoader(ds=ds)
+    data_loader_train = DataLoader(dataset=data, batch_size=config.DATA.BATCH_SIZE,num_workers=1,collate_fn=collate_batch,shuffle=True)
     optimizer = build_optimizer(config, model)
-
     logger.info(str(model))
     model.cuda()
 
@@ -88,79 +94,22 @@ def main(config):
         throughput(data_loader_val, model, logger)
         return
 
-    if config.EVAL_MODE:
-        load_weights(model, config.MODEL.RESUME)
-        acc1, acc5, loss = validate(config, data_loader_val, model)
-        logger.info(f"Only eval. top-1 acc, top-5 acc, loss: {acc1:.3f}, {acc5:.3f}, {loss:.5f}")
-        return
-
     lr_scheduler = build_scheduler(config, optimizer, len(data_loader_train))
-
-    if config.AUG.MIXUP > 0.:
-        # smoothing is handled with mixup label transform
-        criterion = SoftTargetCrossEntropy()
-    elif config.MODEL.LABEL_SMOOTHING > 0.:
-        criterion = LabelSmoothingCrossEntropy(smoothing=config.MODEL.LABEL_SMOOTHING)
-    else:
-        criterion = torch.nn.CrossEntropyLoss()
-
-    max_accuracy = 0.0
-    max_ema_accuracy = 0.0
 
     if config.TRAIN.EMA_ALPHA > 0 and (not config.EVAL_MODE) and (not config.THROUGHPUT_MODE):
         model_ema = copy.deepcopy(model)
     else:
         model_ema = None
 
-    if config.TRAIN.AUTO_RESUME:
-        resume_file = auto_resume_helper(config.OUTPUT)
-        if resume_file:
-            if config.MODEL.RESUME:
-                logger.warning(f"auto-resume changing resume file from {config.MODEL.RESUME} to {resume_file}")
-            config.defrost()
-            config.MODEL.RESUME = resume_file
-            config.freeze()
-            logger.info(f'auto resuming from {resume_file}')
-        else:
-            logger.info(f'no checkpoint found in {config.OUTPUT}, ignoring auto resume')
-
-    if (not config.THROUGHPUT_MODE) and config.MODEL.RESUME:
-        max_accuracy = load_checkpoint(config, model_without_ddp, optimizer, lr_scheduler, logger, model_ema=model_ema)
-
-
     logger.info("Start training")
     start_time = time.time()
     for epoch in range(config.TRAIN.START_EPOCH, config.TRAIN.EPOCHS):
-        data_loader_train.sampler.set_epoch(epoch)
-
-        train_one_epoch(config, model, criterion, data_loader_train, optimizer, epoch, mixup_fn, lr_scheduler, model_ema=model_ema)
-        if dist.get_rank() == 0:
-            save_latest(config, epoch, model_without_ddp, max_accuracy, optimizer, lr_scheduler, logger, model_ema=model_ema)
-            if epoch % config.SAVE_FREQ == 0:
-                save_checkpoint(config, epoch, model_without_ddp, max_accuracy, optimizer, lr_scheduler, logger, model_ema=model_ema)
+        train_one_epoch(config, model, data_loader_train, optimizer, epoch, lr_scheduler, model_ema=model_ema)
+        if epoch % config.SAVE_FREQ == 0:
+            save_checkpoint(config, epoch, model_without_ddp, optimizer, lr_scheduler, logger, model_ema=model_ema)
 
         if epoch % config.SAVE_FREQ == 0 or epoch >= (config.TRAIN.EPOCHS - 10):
-
-            if data_loader_val is not None:
-                acc1, acc5, loss = validate(config, data_loader_val, model)
-                logger.info(f"Accuracy of the network at epoch {epoch}: {acc1:.3f}%")
-                max_accuracy = max(max_accuracy, acc1)
-                logger.info(f'Max accuracy: {max_accuracy:.2f}%')
-                if max_accuracy == acc1 and dist.get_rank() == 0:
-                    save_checkpoint(config, epoch, model_without_ddp, max_accuracy, optimizer, lr_scheduler, logger,
-                                    is_best=True, model_ema=model_ema)
-
             if model_ema is not None:
-                if data_loader_val is not None:
-                    acc1, acc5, loss = validate(config, data_loader_val, model_ema)
-                    logger.info(f"EMAAccuracy of the network at epoch {epoch} test images: {acc1:.3f}%")
-                    max_ema_accuracy = max(max_ema_accuracy, acc1)
-                    logger.info(f'EMAMax accuracy: {max_ema_accuracy:.2f}%')
-                    if max_ema_accuracy == acc1 and dist.get_rank() == 0:
-                        best_ema_path = os.path.join(config.OUTPUT, 'best_ema.pth')
-                        logger.info(f"{best_ema_path} best EMA saving......")
-                        torch.save(unwrap_model(model_ema).state_dict(), best_ema_path)
-                else:
                     latest_ema_path = os.path.join(config.OUTPUT, 'latest_ema.pth')
                     logger.info(f"{latest_ema_path} latest EMA saving......")
                     torch.save(unwrap_model(model_ema).state_dict(), latest_ema_path)
@@ -170,7 +119,7 @@ def main(config):
     logger.info('Training time {}'.format(total_time_str))
 
 
-def train_one_epoch(config, model, criterion, data_loader, optimizer, epoch, mixup_fn, lr_scheduler, model_ema=None):
+def train_one_epoch(config, model, data_loader, optimizer, epoch, lr_scheduler,device="cuda",model_ema=None):
     model.train()
     optimizer.zero_grad()
 
@@ -181,27 +130,30 @@ def train_one_epoch(config, model, criterion, data_loader, optimizer, epoch, mix
 
     start = time.time()
     end = time.time()
-    for idx, (samples, targets) in enumerate(data_loader):
-        samples = samples.cuda(non_blocking=True)
-        targets = targets.cuda(non_blocking=True)
+    
+    for idx, batch in enumerate(data_loader):
 
-        if mixup_fn is not None:
-            samples, targets = mixup_fn(samples, targets)
+        imgs=batch["img"].to(device)
+        gt_centers=batch["pts"]
+        gt_offsets=batch["offs"]
+        gt_boxes=batch["bboxs"].to(device)
+        gt_cats=batch["center"].to(device)
+        gt_msks=batch ["msks"].to(device)
+        for j,item in enumerate(gt_centers):
+            gt_centers[j]=item.to(device)
+        for j,item in enumerate(gt_offsets):
+            gt_offsets[j]=item.to(device)
 
-        outputs = model(samples)
+        inp={"img":imgs}
+        labels={"pts":gt_centers,"offs":gt_offsets,"bboxs":gt_boxes,"center":gt_cats,"msks":gt_msks}
+        inp["labels"]=labels
 
-        if type(outputs) is dict:
-            loss = 0.0
-            for name, pred in outputs.items():
-                if 'aux' in name:
-                    loss += 0.1 * criterion(pred, targets)
-                else:
-                    loss += criterion(pred, targets)
-        else:
-            loss = criterion(outputs, targets)
+        outputs = model(inp)
+
+        losses=outputs["loss"]
+        loss=losses["Total_Loss"]
 
         if config.TRAIN.ACCUMULATION_STEPS > 1:
-
             loss = loss / config.TRAIN.ACCUMULATION_STEPS
             if config.AMP_OPT_LEVEL != "O0":
                 with amp.scale_loss(loss, optimizer) as scaled_loss:
@@ -222,7 +174,6 @@ def train_one_epoch(config, model, criterion, data_loader, optimizer, epoch, mix
                 lr_scheduler.step_update(epoch * num_steps + idx)
 
         else:
-
             optimizer.zero_grad()
             if config.AMP_OPT_LEVEL != "O0":
                 with amp.scale_loss(loss, optimizer) as scaled_loss:
@@ -242,7 +193,7 @@ def train_one_epoch(config, model, criterion, data_loader, optimizer, epoch, mix
 
         torch.cuda.synchronize()
 
-        loss_meter.update(loss.item(), targets.size(0))
+        loss_meter.update(loss.item())
         norm_meter.update(grad_norm)
         batch_time.update(time.time() - end)
 

@@ -115,5 +115,3 @@ def calc_mskLoss(pred_msks,tgt_msks,loss_dict):
     msk_loss=msk_loss1+msk_loss2
     loss_dict.update({"Mask_loss":msk_loss})
     return loss_dict
-    
-    

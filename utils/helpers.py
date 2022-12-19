@@ -172,11 +172,10 @@ def load_weights(model, path):
     unwrap_model(model).load_state_dict(checkpoint, strict=False)
     print('=================== loaded from', path)
 
-def save_latest(config, epoch, model, max_accuracy, optimizer, lr_scheduler, logger, model_ema=None):
+def save_latest(config, epoch, model, optimizer, lr_scheduler, logger, model_ema=None):
     save_state = {'model': model.state_dict(),
                   'optimizer': optimizer.state_dict(),
                   'lr_scheduler': lr_scheduler.state_dict(),
-                  'max_accuracy': max_accuracy,
                   'epoch': epoch,
                   'config': config}
     if config.AMP_OPT_LEVEL != "O0":
@@ -189,11 +188,10 @@ def save_latest(config, epoch, model, max_accuracy, optimizer, lr_scheduler, log
     torch.save(save_state, save_path)
     logger.info(f"{save_path} saved !!!")
 
-def save_checkpoint(config, epoch, model, max_accuracy, optimizer, lr_scheduler, logger, is_best=False, model_ema=None):
+def save_checkpoint(config, epoch, model, optimizer, lr_scheduler, logger, is_best=False, model_ema=None):
     save_state = {'model': model.state_dict(),
                   'optimizer': optimizer.state_dict(),
                   'lr_scheduler': lr_scheduler.state_dict(),
-                  'max_accuracy': max_accuracy,
                   'epoch': epoch,
                   'config': config}
     if config.AMP_OPT_LEVEL != "O0":

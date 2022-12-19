@@ -247,9 +247,69 @@ def create_RepVGGplus_L2pse(deploy=False, use_checkpoint=False):
                   width_multiplier=[2.5, 2.5, 2.5, 5], deploy=deploy, use_post_se=True,
                       use_checkpoint=use_checkpoint)
 
+
+class RepVGGplusPhen(nn.Module):
+    """RepVGGplus
+        An official improved version of RepVGG (RepVGG: Making VGG-style ConvNets Great Again) <https://openaccess.thecvf.com/content/CVPR2021/papers/Ding_RepVGG_Making_VGG-Style_ConvNets_Great_Again_CVPR_2021_paper.pdf>`_.
+
+        Args:
+            num_blocks (tuple[int]): Depths of each stage.
+            num_classes (tuple[int]): Num of classes.
+            width_multiplier (tuple[float]): The width of the four stages
+                will be (64 * width_multiplier[0], 128 * width_multiplier[1], 256 * width_multiplier[2], 512 * width_multiplier[3]).
+            deploy (bool, optional): If True, the model will have the inference-time structure.
+                Default: False.
+            use_post_se (bool, optional): If True, the model will have Squeeze-and-Excitation blocks following the conv-ReLU units.
+                Default: False.
+            use_checkpoint (bool, optional): If True, the model will use torch.utils.checkpoint to save the GPU memory during training with acceptable slowdown.
+                Do not use it if you have sufficient GPU memory.
+                Default: False.
+        """
+    def __init__(self,
+                 num_blocks,
+                 width_multiplier,
+                 deploy=False,
+                 use_post_se=False,
+                 use_checkpoint=False):
+        super().__init__()
+
+        self.deploy = deploy
+        in_channels = min(64, int(64 * width_multiplier[0]))
+        stage_channels = [int(64 * width_multiplier[0]), int(128 * width_multiplier[1]), int(256 * width_multiplier[2]), int(512 * width_multiplier[3])]
+        self.stage0 = RepVGGplusBlock(in_channels=3, out_channels=in_channels, kernel_size=3, stride=2, padding=1, deploy=self.deploy, use_post_se=use_post_se)
+        self.stage1 = RepVGGplusStage(in_channels, stage_channels[0], num_blocks[0], stride=2, use_checkpoint=use_checkpoint, use_post_se=use_post_se, deploy=deploy)
+        self.stage2 = RepVGGplusStage(stage_channels[0], stage_channels[1], num_blocks[1], stride=2, use_checkpoint=use_checkpoint, use_post_se=use_post_se, deploy=deploy)
+        self.stage3 = RepVGGplusStage(stage_channels[1], stage_channels[2], num_blocks[2], stride=1, use_checkpoint=use_checkpoint, use_post_se=use_post_se, deploy=deploy)
+
+    def forward(self, x):
+        out = self.stage0(x)
+        out = self.stage1(out)
+        out = self.stage2(out)
+        out = self.stage3(out)
+        return out
+
+    def switch_repvggplus_to_deploy(self):
+        for m in self.modules():
+            if hasattr(m, 'switch_to_deploy'):
+                m.switch_to_deploy()
+        if hasattr(self, 'stage1_aux'):
+            self.__delattr__('stage1_aux')
+        if hasattr(self, 'stage2_aux'):
+            self.__delattr__('stage2_aux')
+        if hasattr(self, 'stage3_first_aux'):
+            self.__delattr__('stage3_first_aux')
+        self.deploy = True
+
+
+def create_RepVGGplus_phen64(deploy=False, use_checkpoint=False):
+    return RepVGGplusPhen(num_blocks=[8, 14, 24, 1],
+                  width_multiplier=[2.5, 2.5, 2, 5], deploy=deploy, use_post_se=True,
+                      use_checkpoint=use_checkpoint)
+
 #   Will release more
 repvggplus_func_dict = {
     'RepVGGplus-L2pse': create_RepVGGplus_L2pse,
+    'RepVGGplus-phen64': create_RepVGGplus_phen64
 }
 
 def create_RepVGGplus_by_name(name, deploy=False, use_checkpoint=False):
@@ -257,12 +317,12 @@ def create_RepVGGplus_by_name(name, deploy=False, use_checkpoint=False):
         return repvggplus_func_dict[name](deploy=deploy, use_checkpoint=use_checkpoint)
     else:
         print('=================== Building the vanila RepVGG ===================')
-        from repvgg import get_RepVGG_func_by_name
+        from .repvgg import get_RepVGG_func_by_name
         return get_RepVGG_func_by_name(name)(deploy=deploy, use_checkpoint=use_checkpoint)
 
 
-
-
+def get_RepVGGplus_func_by_name(name):
+    return repvggplus_func_dict[name]
 
 
 #   Use this for converting a RepVGG model or a bigger model with RepVGG as its component
