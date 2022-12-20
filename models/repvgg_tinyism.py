@@ -6,9 +6,9 @@ import torch.nn as nn
 from torchvision.ops import roi_align
 import sys,os
 sys.path.append(os.path.abspath('../losses'))
-from losses import *
-from .repvggplus import create_RepVGGplus_by_name
-from .repvggplus import get_RepVGGplus_func_by_name
+from loss import *
+from repvggplus import create_RepVGGplus_by_name
+from repvggplus import get_RepVGGplus_func_by_name
 
 
 def min_max_norm(x,a,b):
@@ -33,7 +33,7 @@ def decode_boxes(cx,cy,pred_szs,pred_offs,stride):
 def process_preds(preds,grid_sz=64,cat_th=0.4): 
     pred_cats=preds["center"].cpu()
     pred_cats=pred_cats.squeeze(0).sigmoid()
-    pred_cats[pred_cats<cat_th]=0   
+    pred_cats[pred_cats<cat_th]=0  
     nzidx=torch.nonzero(pred_cats)
     bidx=nzidx[:,0]    
     idx=nzidx[:,1]
@@ -77,7 +77,8 @@ class tinyModel(nn.Module):
         self.backbone = repvgg_fn(deploy)
         nheadlayers=6
         #bb_channel=self.backbone.layer4[1].conv3.out_channels
-        bb_channels=self.backbone.stage3.blocks[23].rbr_1x1.conv.out_channels
+        #bb_channels=self.backbone.stage3.blocks[23].rbr_1x1.conv.out_channels
+        bb_channels=512
         if posEncoding:
             bb_channels+=2
         ## Classification Head
@@ -112,9 +113,13 @@ class tinyModel(nn.Module):
         #self.upsample=Upsample(256)
         self.seg=nn.Conv2d(interchn,1,1,padding=0)    
         
-    def forward(self,inp: dict) -> torch.Tensor:
+    def forward(self,inp) -> torch.Tensor:
         ## For training expects the labels to be present also
-        img=inp["img"]
+        # Inp is dict for traning and a tensor for pred and inference
+        if isinstance(inp, dict):
+            img=inp["img"]
+        else:
+            img=inp
         x=self.backbone(img)
         if self.posEncoding:
             x=posEncoding(x)
@@ -130,7 +135,7 @@ class tinyModel(nn.Module):
         off=self.offset_head(x)
         off=self.offset(off)
         off=off.permute(0,2,3,1)
-        
+
         preds={"center":centers,"offs":off,"boxes":box}
 
         if self.training:
@@ -155,7 +160,7 @@ class tinyModel(nn.Module):
         else:
             preds=process_preds(preds)
             boxlist=[preds["boxes"]]
-            pred_msks=roi_align(inp["img"],boxlist,output_size=64)
+            pred_msks=roi_align(img,boxlist,output_size=64)
             if self.posEncoding:
                 pred_msks=posEncoding(pred_msks)
             pred_msks=self.seg_head(pred_msks)

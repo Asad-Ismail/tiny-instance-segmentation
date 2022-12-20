@@ -21,8 +21,10 @@ parser.add_argument("--dataset",default="hub://aismail2/cucumber_OD",help="Activ
 parser.add_argument("--size",default=512,type=int,help="Image size used for training model")
 parser.add_argument("--epochs",default=500,type=int,help="Image size used for training model")
 parser.add_argument("--device", default="cuda",help="Device to Train Model")
-parser.add_argument("--batch_sz", default=16,type=int,help="Device to Train Model")
+parser.add_argument("--batch_sz", default=4,type=int,help="Device to Train Model")
 parser.add_argument("--pretrain",default="",type=str,help="Pretrained weights")
+parser.add_argument("--model_arch",default="repvggplus", choices=['resnet', 'repvggplus'],type=str,help="Model Architecture")
+parser.add_argument("--posencoding",default=True,type=bool,help="Positional Encoding")
 parser.add_argument("--outdir",default="./output",type=str,help="Output of weights")
 
 args = parser.parse_args()
@@ -32,6 +34,8 @@ dname = args.device
 pretrain= args.pretrain
 outdir=args.outdir
 epochs=args.epochs
+modelarch=args.model_arch
+posencoding=args.posencoding
 BATCH_SIZE=args.batch_sz
 
 outdir=f"{outdir}/{datestring}"
@@ -40,9 +44,16 @@ os.makedirs(outdir)
 assert os.path.exists(outdir), "Output dir does not exist"
 
 # Model
-model=tinyModel(posEncoding=False)
+if modelarch=="resnet":
+    from models.tinyism import tinyModel
+    model=tinyModel(posEncoding=posencoding)
+elif modelarch=="repvggplus":
+    from models.repvgg_tinyism import tinyModel
+    model=tinyModel(posEncoding=posencoding,deploy=False)
+
 if pretrain:
     model.load_state_dict(torch.load(pretrain,map_location=torch.device('cpu')))
+
 device=torch.device(dname)
 model.to(device)
 optimizer = optim.Adam(model.parameters(), lr=1e-4)

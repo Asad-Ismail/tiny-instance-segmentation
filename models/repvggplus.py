@@ -6,7 +6,7 @@
 
 import torch.nn as nn
 import torch.utils.checkpoint as checkpoint
-from .se_block import SEBlock
+from se_block import SEBlock
 import torch
 import numpy as np
 

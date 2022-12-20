@@ -19,7 +19,7 @@ parser.add_argument("--size",default=512,type=int,help="Image size used for trai
 parser.add_argument("--model_arch",default="repvggplus", choices=['resnet', 'repvggplus'],type=str,help="Model Architecture")
 parser.add_argument("--posencoding",default=True,type=bool,help="Positional Encoding")
 parser.add_argument("--vispath", default="vis_results",help="Write visualizations to this location")
-parser.add_argument("--weight_path",default="./weights/resnet18_inst.pth",type=str,help="Image size used for training model")
+parser.add_argument("--weight_path",default="./weights/repvggplus_weights.pth",type=str,help="Weights of training model")
 args = parser.parse_args()
 
 img_path = args.image

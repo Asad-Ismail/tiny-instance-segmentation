@@ -8,9 +8,10 @@ import torch
 from datasets.data_loader import valLoader 
 import deeplake as hub
 import argparse
+from ptflops import get_model_complexity_info
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--weight_path",default="./weights/resnet18_inst_nopos.pth",type=str,help="model weights path")
+parser.add_argument("--weight_path",default="./weights/repvggplus_weights.pth",type=str,help="model weights path")
 parser.add_argument("--model_arch",default="repvggplus", choices=['resnet', 'repvggplus'],type=str,help="Model Architecture")
 parser.add_argument("--posencoding",default=True,type=bool,help="Positional Encoding")
 parser.add_argument("--modelingo",default=True,type=bool,help="Model FLOPS and params")
@@ -19,7 +20,7 @@ args = parser.parse_args()
 
 weightpath= args.weight_path
 modelarch=args.model_arch
-posencoding=args.posEncoding
+posencoding=args.posencoding
 
 device=torch.device('cpu')
 if modelarch=="resnet":
@@ -28,16 +29,16 @@ if modelarch=="resnet":
     model.load_state_dict(torch.load(weightpath,map_location=torch.device('cpu')))
 elif modelarch=="repvggplus":
     from models.repvgg_tinyism import tinyModel
-    model=tinyModel(posEncoding=posencoding,deploy=True)
-    model.load_state_dict(torch.load(weightpath,map_location=torch.device('cpu')))
+    model=tinyModel(posEncoding=posencoding,deploy=False)
+    model.load_state_dict(torch.load(weightpath,map_location=torch.device('cpu'))["model"])
 
 model.cpu()
 model.eval()
 
-with torch.cuda.device(0):
-    macs, params = get_model_complexity_info(net, (3, 512, 512), as_strings=True,print_per_layer_stat=True, verbose=True)
-    print('{:<30}  {:<8}'.format('Computational complexity: ', macs))
-    print('{:<30}  {:<8}'.format('Number of parameters: ', params))
+#with torch.cuda.device(0):
+#    macs, params = get_model_complexity_info(model, (3, 512, 512), as_strings=True,print_per_layer_stat=True, verbose=True)
+#    print('{:<30}  {:<8}'.format('Computational complexity: ', macs))
+#    print('{:<30}  {:<8}'.format('Number of parameters: ', params))
 
 @torch.no_grad() 
 def evaluate(coco, model, data_loader, device):
@@ -91,5 +92,5 @@ if __name__=="__main__":
     coco = get_coco_api_from_dataset(val_loader.dataset)
     iou_types = ["bbox","segm"]
     coco_evaluator = evaluate(coco, model, val_loader, device)
-    print('{:<30}  {:<8}'.format('Computational complexity (GMACS): ', macs))
-    print('{:<30}  {:<8}'.format('Number of parameters (M):', params))
+    #print('{:<30}  {:<8}'.format('Computational complexity (GMACS): ', macs))
+    #print('{:<30}  {:<8}'.format('Number of parameters (M):', params))

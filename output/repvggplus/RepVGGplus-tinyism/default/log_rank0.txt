@@ -3438,3 +3438,200 @@ TRAIN:
 [2022-12-20 18:37:02 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [278/300][10/74]	eta 0:00:59 lr 0.000000	time 0.8870 (0.9297)	loss 2.6942 (2.8593)	grad_norm 71.9083 (114.1150)	mem 14369MB
 [2022-12-20 18:37:10 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [278/300][20/74]	eta 0:00:48 lr 0.000000	time 0.8672 (0.9016)	loss 2.3888 (3.1619)	grad_norm 146.8813 (117.1577)	mem 14369MB
 [2022-12-20 18:37:19 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [278/300][30/74]	eta 0:00:39 lr 0.000000	time 0.8670 (0.8917)	loss 2.5936 (3.1135)	grad_norm 119.7094 (119.4885)	mem 14369MB
+[2022-12-20 18:37:28 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [278/300][40/74]	eta 0:00:30 lr 0.000000	time 0.8663 (0.8871)	loss 2.7183 (3.1205)	grad_norm 132.5336 (116.7607)	mem 14369MB
+[2022-12-20 18:37:37 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [278/300][50/74]	eta 0:00:21 lr 0.000000	time 0.8714 (0.8848)	loss 2.3993 (3.0981)	grad_norm 150.3426 (115.4711)	mem 14369MB
+[2022-12-20 18:37:45 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [278/300][60/74]	eta 0:00:12 lr 0.000000	time 0.8834 (0.8832)	loss 2.7407 (3.0981)	grad_norm 98.3230 (114.1524)	mem 14369MB
+[2022-12-20 18:37:54 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [278/300][70/74]	eta 0:00:03 lr 0.000000	time 0.8788 (0.8835)	loss 2.7980 (3.1207)	grad_norm 110.6692 (114.2607)	mem 14369MB
+[2022-12-20 18:37:57 RepVGGplus-tinyism] (train_repvgg.py 217): INFO EPOCH 278 training takes 0:01:05
+[2022-12-20 18:37:58 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [279/300][0/74]	eta 0:01:52 lr 0.000000	time 1.5196 (1.5196)	loss 2.4858 (2.4858)	grad_norm 128.6847 (128.6847)	mem 14369MB
+[2022-12-20 18:38:07 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [279/300][10/74]	eta 0:01:00 lr 0.000000	time 0.8764 (0.9402)	loss 2.6761 (3.3288)	grad_norm 63.2986 (118.2350)	mem 14369MB
+[2022-12-20 18:38:16 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [279/300][20/74]	eta 0:00:48 lr 0.000000	time 0.8679 (0.9059)	loss 3.2106 (3.2349)	grad_norm 110.5437 (121.0308)	mem 14369MB
+[2022-12-20 18:38:24 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [279/300][30/74]	eta 0:00:39 lr 0.000000	time 0.8639 (0.8945)	loss 3.2326 (3.4661)	grad_norm 113.8588 (124.7611)	mem 14369MB
+[2022-12-20 18:38:33 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [279/300][40/74]	eta 0:00:30 lr 0.000000	time 0.8848 (0.8897)	loss 2.7121 (3.3844)	grad_norm 53.0448 (127.7405)	mem 14369MB
+[2022-12-20 18:38:42 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [279/300][50/74]	eta 0:00:21 lr 0.000000	time 0.8627 (0.8857)	loss 3.4027 (3.3042)	grad_norm 174.0373 (128.2228)	mem 14369MB
+[2022-12-20 18:38:51 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [279/300][60/74]	eta 0:00:12 lr 0.000000	time 0.8798 (0.8847)	loss 2.8307 (3.2203)	grad_norm 156.8621 (125.9618)	mem 14369MB
+[2022-12-20 18:38:59 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [279/300][70/74]	eta 0:00:03 lr 0.000000	time 0.8846 (0.8833)	loss 2.8835 (3.1912)	grad_norm 99.2059 (123.4304)	mem 14369MB
+[2022-12-20 18:39:02 RepVGGplus-tinyism] (train_repvgg.py 217): INFO EPOCH 279 training takes 0:01:05
+[2022-12-20 18:39:03 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [280/300][0/74]	eta 0:01:53 lr 0.000000	time 1.5334 (1.5334)	loss 2.4509 (2.4509)	grad_norm 101.2273 (101.2273)	mem 14369MB
+[2022-12-20 18:39:12 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [280/300][10/74]	eta 0:00:59 lr 0.000000	time 0.8782 (0.9360)	loss 2.5553 (2.9831)	grad_norm 89.7922 (88.5774)	mem 14369MB
+[2022-12-20 18:39:21 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [280/300][20/74]	eta 0:00:48 lr 0.000000	time 0.8803 (0.9065)	loss 2.5922 (3.0286)	grad_norm 64.1818 (103.7926)	mem 14369MB
+[2022-12-20 18:39:30 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [280/300][30/74]	eta 0:00:39 lr 0.000000	time 0.8741 (0.8945)	loss 2.7157 (2.9404)	grad_norm 92.8166 (111.4046)	mem 14369MB
+[2022-12-20 18:39:38 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [280/300][40/74]	eta 0:00:30 lr 0.000000	time 0.8743 (0.8895)	loss 6.5486 (3.0044)	grad_norm 124.7641 (115.7934)	mem 14369MB
+[2022-12-20 18:39:47 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [280/300][50/74]	eta 0:00:21 lr 0.000000	time 0.8810 (0.8872)	loss 3.0707 (2.9983)	grad_norm 96.3201 (115.0155)	mem 14369MB
+[2022-12-20 18:39:56 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [280/300][60/74]	eta 0:00:12 lr 0.000000	time 0.8721 (0.8854)	loss 3.1727 (3.0816)	grad_norm 94.9526 (113.9304)	mem 14369MB
+[2022-12-20 18:40:05 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [280/300][70/74]	eta 0:00:03 lr 0.000000	time 0.8750 (0.8834)	loss 4.4095 (3.1448)	grad_norm 131.3060 (112.9332)	mem 14369MB
+[2022-12-20 18:40:07 RepVGGplus-tinyism] (train_repvgg.py 217): INFO EPOCH 280 training takes 0:01:05
+[2022-12-20 18:40:07 RepVGGplus-tinyism] (helpers.py 207): INFO ./output/repvggplus/RepVGGplus-tinyism/default/ckpt_epoch_280.pth saving......
+[2022-12-20 18:40:08 RepVGGplus-tinyism] (helpers.py 209): INFO ./output/repvggplus/RepVGGplus-tinyism/default/ckpt_epoch_280.pth saved !!!
+[2022-12-20 18:40:10 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [281/300][0/74]	eta 0:01:52 lr 0.000000	time 1.5160 (1.5160)	loss 2.9818 (2.9818)	grad_norm 64.3524 (64.3524)	mem 14369MB
+[2022-12-20 18:40:19 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [281/300][10/74]	eta 0:00:59 lr 0.000000	time 0.8729 (0.9319)	loss 2.6571 (3.0242)	grad_norm 73.0199 (87.8598)	mem 14369MB
+[2022-12-20 18:40:27 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [281/300][20/74]	eta 0:00:48 lr 0.000000	time 0.8764 (0.9063)	loss 2.8185 (2.9912)	grad_norm 50.9102 (104.7682)	mem 14369MB
+[2022-12-20 18:40:36 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [281/300][30/74]	eta 0:00:39 lr 0.000000	time 0.8762 (0.8946)	loss 5.7632 (3.2941)	grad_norm 72.2187 (106.0661)	mem 14369MB
+[2022-12-20 18:40:45 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [281/300][40/74]	eta 0:00:30 lr 0.000000	time 0.8767 (0.8885)	loss 5.4374 (3.2102)	grad_norm 354.3736 (117.1081)	mem 14369MB
+[2022-12-20 18:40:53 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [281/300][50/74]	eta 0:00:21 lr 0.000000	time 0.8654 (0.8842)	loss 5.6774 (3.2637)	grad_norm 121.4380 (116.0749)	mem 14369MB
+[2022-12-20 18:41:02 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [281/300][60/74]	eta 0:00:12 lr 0.000000	time 0.8897 (0.8838)	loss 2.2438 (3.1895)	grad_norm 99.8868 (116.7695)	mem 14369MB
+[2022-12-20 18:41:11 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [281/300][70/74]	eta 0:00:03 lr 0.000000	time 0.8719 (0.8820)	loss 4.3240 (3.2415)	grad_norm 107.1263 (121.4520)	mem 14369MB
+[2022-12-20 18:41:13 RepVGGplus-tinyism] (train_repvgg.py 217): INFO EPOCH 281 training takes 0:01:05
+[2022-12-20 18:41:15 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [282/300][0/74]	eta 0:01:52 lr 0.000000	time 1.5157 (1.5157)	loss 3.2212 (3.2212)	grad_norm 189.9944 (189.9944)	mem 14369MB
+[2022-12-20 18:41:24 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [282/300][10/74]	eta 0:00:59 lr 0.000000	time 0.8649 (0.9337)	loss 2.4819 (2.9264)	grad_norm 70.7521 (89.6009)	mem 14369MB
+[2022-12-20 18:41:32 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [282/300][20/74]	eta 0:00:48 lr 0.000000	time 0.8613 (0.9033)	loss 3.2841 (2.9562)	grad_norm 133.1817 (100.9968)	mem 14369MB
+[2022-12-20 18:41:41 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [282/300][30/74]	eta 0:00:39 lr 0.000000	time 0.8736 (0.8934)	loss 3.4878 (3.0876)	grad_norm 115.5278 (98.9762)	mem 14369MB
+[2022-12-20 18:41:50 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [282/300][40/74]	eta 0:00:30 lr 0.000000	time 0.8768 (0.8877)	loss 3.1660 (3.1730)	grad_norm 110.8442 (102.6420)	mem 14369MB
+[2022-12-20 18:41:59 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [282/300][50/74]	eta 0:00:21 lr 0.000000	time 0.8797 (0.8872)	loss 3.7608 (3.1941)	grad_norm 53.4246 (104.8408)	mem 14369MB
+[2022-12-20 18:42:08 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [282/300][60/74]	eta 0:00:12 lr 0.000000	time 0.8677 (0.8854)	loss 3.3212 (3.2432)	grad_norm 82.2667 (113.6884)	mem 14369MB
+[2022-12-20 18:42:16 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [282/300][70/74]	eta 0:00:03 lr 0.000000	time 0.8623 (0.8837)	loss 2.5787 (3.1825)	grad_norm 114.5029 (114.2090)	mem 14369MB
+[2022-12-20 18:42:19 RepVGGplus-tinyism] (train_repvgg.py 217): INFO EPOCH 282 training takes 0:01:05
+[2022-12-20 18:42:20 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [283/300][0/74]	eta 0:01:52 lr 0.000000	time 1.5202 (1.5202)	loss 3.0594 (3.0594)	grad_norm 160.0615 (160.0615)	mem 14369MB
+[2022-12-20 18:42:29 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [283/300][10/74]	eta 0:00:59 lr 0.000000	time 0.8638 (0.9277)	loss 3.6568 (3.0440)	grad_norm 283.8067 (142.1623)	mem 14369MB
+[2022-12-20 18:42:38 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [283/300][20/74]	eta 0:00:48 lr 0.000000	time 0.8752 (0.9007)	loss 3.8280 (3.0626)	grad_norm 95.8048 (116.8511)	mem 14369MB
+[2022-12-20 18:42:46 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [283/300][30/74]	eta 0:00:39 lr 0.000000	time 0.8790 (0.8920)	loss 5.5907 (3.0841)	grad_norm 122.1719 (108.0558)	mem 14369MB
+[2022-12-20 18:42:55 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [283/300][40/74]	eta 0:00:30 lr 0.000000	time 0.8748 (0.8878)	loss 2.7859 (3.1783)	grad_norm 87.0835 (109.3362)	mem 14369MB
+[2022-12-20 18:43:04 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [283/300][50/74]	eta 0:00:21 lr 0.000000	time 0.8828 (0.8849)	loss 2.9970 (3.1298)	grad_norm 83.6002 (111.1589)	mem 14369MB
+[2022-12-20 18:43:13 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [283/300][60/74]	eta 0:00:12 lr 0.000000	time 0.8822 (0.8836)	loss 3.4282 (3.1379)	grad_norm 117.7045 (111.3861)	mem 14369MB
+[2022-12-20 18:43:21 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [283/300][70/74]	eta 0:00:03 lr 0.000000	time 0.8754 (0.8824)	loss 3.3494 (3.1577)	grad_norm 115.0769 (113.4915)	mem 14369MB
+[2022-12-20 18:43:24 RepVGGplus-tinyism] (train_repvgg.py 217): INFO EPOCH 283 training takes 0:01:05
+[2022-12-20 18:43:26 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [284/300][0/74]	eta 0:01:52 lr 0.000000	time 1.5180 (1.5180)	loss 3.1270 (3.1270)	grad_norm 142.9887 (142.9887)	mem 14369MB
+[2022-12-20 18:43:34 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [284/300][10/74]	eta 0:00:59 lr 0.000000	time 0.8678 (0.9265)	loss 3.1413 (3.1790)	grad_norm 147.9678 (157.9720)	mem 14369MB
+[2022-12-20 18:43:43 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [284/300][20/74]	eta 0:00:48 lr 0.000000	time 0.8869 (0.9024)	loss 4.7191 (3.1646)	grad_norm 279.0226 (137.0440)	mem 14369MB
+[2022-12-20 18:43:52 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [284/300][30/74]	eta 0:00:39 lr 0.000000	time 0.8776 (0.8923)	loss 2.8661 (3.1984)	grad_norm 76.0790 (124.5816)	mem 14369MB
+[2022-12-20 18:44:00 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [284/300][40/74]	eta 0:00:30 lr 0.000000	time 0.8807 (0.8879)	loss 3.6496 (3.2264)	grad_norm 120.3093 (124.2150)	mem 14369MB
+[2022-12-20 18:44:09 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [284/300][50/74]	eta 0:00:21 lr 0.000000	time 0.8629 (0.8847)	loss 3.9202 (3.1500)	grad_norm 57.9137 (119.8536)	mem 14369MB
+[2022-12-20 18:44:18 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [284/300][60/74]	eta 0:00:12 lr 0.000000	time 0.8696 (0.8824)	loss 3.4842 (3.2660)	grad_norm 85.1542 (116.0395)	mem 14369MB
+[2022-12-20 18:44:27 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [284/300][70/74]	eta 0:00:03 lr 0.000000	time 0.8886 (0.8811)	loss 2.9023 (3.2317)	grad_norm 96.5285 (112.8556)	mem 14369MB
+[2022-12-20 18:44:29 RepVGGplus-tinyism] (train_repvgg.py 217): INFO EPOCH 284 training takes 0:01:05
+[2022-12-20 18:44:31 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [285/300][0/74]	eta 0:01:52 lr 0.000000	time 1.5243 (1.5243)	loss 3.0635 (3.0635)	grad_norm 106.7978 (106.7978)	mem 14369MB
+[2022-12-20 18:44:39 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [285/300][10/74]	eta 0:00:59 lr 0.000000	time 0.8661 (0.9276)	loss 2.7177 (3.0107)	grad_norm 124.7124 (113.4168)	mem 14369MB
+[2022-12-20 18:44:48 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [285/300][20/74]	eta 0:00:48 lr 0.000000	time 0.8651 (0.9005)	loss 2.2463 (2.9349)	grad_norm 102.4437 (112.8070)	mem 14369MB
+[2022-12-20 18:44:57 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [285/300][30/74]	eta 0:00:39 lr 0.000000	time 0.8718 (0.8957)	loss 2.6624 (2.9319)	grad_norm 137.1969 (110.2542)	mem 14369MB
+[2022-12-20 18:45:06 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [285/300][40/74]	eta 0:00:30 lr 0.000000	time 0.8635 (0.8908)	loss 3.0251 (3.0469)	grad_norm 257.2013 (119.2660)	mem 14369MB
+[2022-12-20 18:45:15 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [285/300][50/74]	eta 0:00:21 lr 0.000000	time 0.8785 (0.8929)	loss 3.1249 (3.1332)	grad_norm 80.2766 (115.3377)	mem 14369MB
+[2022-12-20 18:45:23 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [285/300][60/74]	eta 0:00:12 lr 0.000000	time 0.8758 (0.8897)	loss 3.6102 (3.1296)	grad_norm 111.0286 (116.2441)	mem 14369MB
+[2022-12-20 18:45:32 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [285/300][70/74]	eta 0:00:03 lr 0.000000	time 0.8927 (0.8874)	loss 4.0204 (3.2176)	grad_norm 173.2857 (119.4244)	mem 14369MB
+[2022-12-20 18:45:35 RepVGGplus-tinyism] (train_repvgg.py 217): INFO EPOCH 285 training takes 0:01:05
+[2022-12-20 18:45:36 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [286/300][0/74]	eta 0:01:52 lr 0.000000	time 1.5222 (1.5222)	loss 2.5208 (2.5208)	grad_norm 91.0760 (91.0760)	mem 14369MB
+[2022-12-20 18:45:45 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [286/300][10/74]	eta 0:00:59 lr 0.000000	time 0.8832 (0.9351)	loss 4.9355 (3.0339)	grad_norm 76.8979 (143.9038)	mem 14369MB
+[2022-12-20 18:45:54 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [286/300][20/74]	eta 0:00:48 lr 0.000000	time 0.8688 (0.9068)	loss 3.0810 (3.0560)	grad_norm 106.3674 (122.2155)	mem 14369MB
+[2022-12-20 18:46:03 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [286/300][30/74]	eta 0:00:39 lr 0.000000	time 0.8718 (0.8978)	loss 2.4832 (3.0298)	grad_norm 118.8888 (121.2628)	mem 14369MB
+[2022-12-20 18:46:11 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [286/300][40/74]	eta 0:00:30 lr 0.000000	time 0.8763 (0.8941)	loss 2.5167 (3.0558)	grad_norm 120.2107 (116.0088)	mem 14369MB
+[2022-12-20 18:46:20 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [286/300][50/74]	eta 0:00:21 lr 0.000000	time 0.8750 (0.8914)	loss 4.0011 (3.0786)	grad_norm 250.2646 (116.0326)	mem 14369MB
+[2022-12-20 18:46:29 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [286/300][60/74]	eta 0:00:12 lr 0.000000	time 0.8893 (0.8898)	loss 3.5098 (3.1373)	grad_norm 84.7570 (120.0178)	mem 14369MB
+[2022-12-20 18:46:38 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [286/300][70/74]	eta 0:00:03 lr 0.000000	time 0.8768 (0.8886)	loss 2.9345 (3.1741)	grad_norm 106.7827 (128.7506)	mem 14369MB
+[2022-12-20 18:46:40 RepVGGplus-tinyism] (train_repvgg.py 217): INFO EPOCH 286 training takes 0:01:05
+[2022-12-20 18:46:42 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [287/300][0/74]	eta 0:01:52 lr 0.000000	time 1.5242 (1.5242)	loss 3.3255 (3.3255)	grad_norm 145.2497 (145.2497)	mem 14369MB
+[2022-12-20 18:46:51 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [287/300][10/74]	eta 0:00:59 lr 0.000000	time 0.8830 (0.9337)	loss 3.0197 (3.5614)	grad_norm 94.9861 (99.7486)	mem 14369MB
+[2022-12-20 18:46:59 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [287/300][20/74]	eta 0:00:48 lr 0.000000	time 0.8624 (0.9030)	loss 2.5010 (3.2898)	grad_norm 130.7880 (98.9292)	mem 14369MB
+[2022-12-20 18:47:08 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [287/300][30/74]	eta 0:00:39 lr 0.000000	time 0.8730 (0.8931)	loss 2.8536 (3.2856)	grad_norm 120.3705 (102.1255)	mem 14369MB
+[2022-12-20 18:47:17 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [287/300][40/74]	eta 0:00:30 lr 0.000000	time 0.8653 (0.8903)	loss 2.4524 (3.3280)	grad_norm 212.6180 (106.0470)	mem 14369MB
+[2022-12-20 18:47:26 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [287/300][50/74]	eta 0:00:21 lr 0.000000	time 0.8825 (0.8868)	loss 3.2379 (3.2804)	grad_norm 81.5464 (108.1700)	mem 14369MB
+[2022-12-20 18:47:34 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [287/300][60/74]	eta 0:00:12 lr 0.000000	time 0.8659 (0.8848)	loss 2.9637 (3.2528)	grad_norm 238.1881 (109.0473)	mem 14369MB
+[2022-12-20 18:47:43 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [287/300][70/74]	eta 0:00:03 lr 0.000000	time 0.8662 (0.8831)	loss 3.6302 (3.1688)	grad_norm 130.0680 (107.9641)	mem 14369MB
+[2022-12-20 18:47:46 RepVGGplus-tinyism] (train_repvgg.py 217): INFO EPOCH 287 training takes 0:01:05
+[2022-12-20 18:47:48 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [288/300][0/74]	eta 0:02:55 lr 0.000000	time 2.3698 (2.3698)	loss 4.1656 (4.1656)	grad_norm 110.1223 (110.1223)	mem 14369MB
+[2022-12-20 18:47:57 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [288/300][10/74]	eta 0:01:04 lr 0.000000	time 0.8661 (1.0102)	loss 3.9658 (3.5616)	grad_norm 114.6190 (108.4714)	mem 14369MB
+[2022-12-20 18:48:05 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [288/300][20/74]	eta 0:00:51 lr 0.000000	time 0.8706 (0.9451)	loss 2.8582 (3.2835)	grad_norm 71.3562 (100.4562)	mem 14369MB
+[2022-12-20 18:48:14 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [288/300][30/74]	eta 0:00:40 lr 0.000000	time 0.8753 (0.9218)	loss 3.4141 (3.2929)	grad_norm 98.1915 (104.4407)	mem 14369MB
+[2022-12-20 18:48:23 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [288/300][40/74]	eta 0:00:30 lr 0.000000	time 0.8691 (0.9112)	loss 3.2028 (3.3359)	grad_norm 160.0759 (107.9348)	mem 14369MB
+[2022-12-20 18:48:32 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [288/300][50/74]	eta 0:00:21 lr 0.000000	time 0.8923 (0.9049)	loss 2.9510 (3.2739)	grad_norm 143.5575 (109.2805)	mem 14369MB
+[2022-12-20 18:48:41 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [288/300][60/74]	eta 0:00:12 lr 0.000000	time 0.8845 (0.9010)	loss 2.7111 (3.2130)	grad_norm 56.3135 (108.9343)	mem 14369MB
+[2022-12-20 18:48:49 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [288/300][70/74]	eta 0:00:03 lr 0.000000	time 0.8835 (0.8978)	loss 3.1734 (3.1846)	grad_norm 116.0330 (107.7666)	mem 14369MB
+[2022-12-20 18:48:52 RepVGGplus-tinyism] (train_repvgg.py 217): INFO EPOCH 288 training takes 0:01:06
+[2022-12-20 18:48:53 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [289/300][0/74]	eta 0:01:52 lr 0.000000	time 1.5257 (1.5257)	loss 3.7405 (3.7405)	grad_norm 117.2540 (117.2540)	mem 14369MB
+[2022-12-20 18:49:02 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [289/300][10/74]	eta 0:00:59 lr 0.000000	time 0.8686 (0.9311)	loss 3.5822 (3.4396)	grad_norm 61.6626 (109.4458)	mem 14369MB
+[2022-12-20 18:49:11 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [289/300][20/74]	eta 0:00:48 lr 0.000000	time 0.8608 (0.9045)	loss 2.1556 (3.3028)	grad_norm 119.7794 (117.4528)	mem 14369MB
+[2022-12-20 18:49:20 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [289/300][30/74]	eta 0:00:39 lr 0.000000	time 0.8832 (0.8936)	loss 2.7260 (3.0947)	grad_norm 58.5505 (116.9230)	mem 14369MB
+[2022-12-20 18:49:28 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [289/300][40/74]	eta 0:00:30 lr 0.000000	time 0.8796 (0.8887)	loss 4.4825 (3.1081)	grad_norm 135.9655 (114.6440)	mem 14369MB
+[2022-12-20 18:49:37 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [289/300][50/74]	eta 0:00:21 lr 0.000000	time 0.8745 (0.8853)	loss 6.0758 (3.0920)	grad_norm 191.1142 (111.5341)	mem 14369MB
+[2022-12-20 18:49:46 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [289/300][60/74]	eta 0:00:12 lr 0.000000	time 0.8744 (0.8840)	loss 3.4356 (3.1491)	grad_norm 99.7224 (110.3890)	mem 14369MB
+[2022-12-20 18:49:55 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [289/300][70/74]	eta 0:00:03 lr 0.000000	time 0.8818 (0.8829)	loss 3.4779 (3.1245)	grad_norm 132.8043 (111.7845)	mem 14369MB
+[2022-12-20 18:49:57 RepVGGplus-tinyism] (train_repvgg.py 217): INFO EPOCH 289 training takes 0:01:05
+[2022-12-20 18:49:59 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [290/300][0/74]	eta 0:01:51 lr 0.000000	time 1.5035 (1.5035)	loss 2.3818 (2.3818)	grad_norm 75.9114 (75.9114)	mem 14369MB
+[2022-12-20 18:50:07 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [290/300][10/74]	eta 0:00:59 lr 0.000000	time 0.8643 (0.9303)	loss 2.4437 (3.0172)	grad_norm 95.5202 (110.4645)	mem 14369MB
+[2022-12-20 18:50:16 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [290/300][20/74]	eta 0:00:48 lr 0.000000	time 0.8688 (0.9007)	loss 4.5797 (2.8992)	grad_norm 107.2442 (103.7139)	mem 14369MB
+[2022-12-20 18:50:25 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [290/300][30/74]	eta 0:00:39 lr 0.000000	time 0.8703 (0.8921)	loss 4.0213 (3.2679)	grad_norm 78.9036 (111.5402)	mem 14369MB
+[2022-12-20 18:50:34 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [290/300][40/74]	eta 0:00:30 lr 0.000000	time 0.8882 (0.8877)	loss 3.7365 (3.3683)	grad_norm 233.9033 (119.2034)	mem 14369MB
+[2022-12-20 18:50:42 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [290/300][50/74]	eta 0:00:21 lr 0.000000	time 0.8652 (0.8849)	loss 3.0249 (3.3334)	grad_norm 70.0847 (119.6362)	mem 14369MB
+[2022-12-20 18:50:51 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [290/300][60/74]	eta 0:00:12 lr 0.000000	time 0.8757 (0.8836)	loss 2.3718 (3.2648)	grad_norm 101.4349 (114.1966)	mem 14369MB
+[2022-12-20 18:51:00 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [290/300][70/74]	eta 0:00:03 lr 0.000000	time 0.8660 (0.8821)	loss 2.3369 (3.1864)	grad_norm 150.8155 (113.9350)	mem 14369MB
+[2022-12-20 18:51:02 RepVGGplus-tinyism] (train_repvgg.py 217): INFO EPOCH 290 training takes 0:01:05
+[2022-12-20 18:51:04 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [291/300][0/74]	eta 0:01:52 lr 0.000000	time 1.5182 (1.5182)	loss 3.4631 (3.4631)	grad_norm 135.3951 (135.3951)	mem 14369MB
+[2022-12-20 18:51:13 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [291/300][10/74]	eta 0:00:59 lr 0.000000	time 0.8785 (0.9296)	loss 2.7111 (3.0432)	grad_norm 34.8197 (116.7784)	mem 14369MB
+[2022-12-20 18:51:21 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [291/300][20/74]	eta 0:00:48 lr 0.000000	time 0.8672 (0.9017)	loss 3.7316 (3.2448)	grad_norm 97.4024 (111.0694)	mem 14369MB
+[2022-12-20 18:51:30 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [291/300][30/74]	eta 0:00:39 lr 0.000000	time 0.8645 (0.8925)	loss 2.8009 (3.1842)	grad_norm 109.9865 (110.3544)	mem 14369MB
+[2022-12-20 18:51:39 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [291/300][40/74]	eta 0:00:30 lr 0.000000	time 0.8713 (0.8875)	loss 2.6857 (3.1457)	grad_norm 197.9794 (112.9212)	mem 14369MB
+[2022-12-20 18:51:48 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [291/300][50/74]	eta 0:00:21 lr 0.000000	time 0.8717 (0.8849)	loss 2.5583 (3.2000)	grad_norm 116.6061 (113.4101)	mem 14369MB
+[2022-12-20 18:51:56 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [291/300][60/74]	eta 0:00:12 lr 0.000000	time 0.8844 (0.8840)	loss 3.0458 (3.1816)	grad_norm 77.0907 (114.3320)	mem 14369MB
+[2022-12-20 18:52:05 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [291/300][70/74]	eta 0:00:03 lr 0.000000	time 0.8835 (0.8833)	loss 2.5948 (3.1405)	grad_norm 121.0691 (113.1161)	mem 14369MB
+[2022-12-20 18:52:08 RepVGGplus-tinyism] (train_repvgg.py 217): INFO EPOCH 291 training takes 0:01:05
+[2022-12-20 18:52:09 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [292/300][0/74]	eta 0:01:52 lr 0.000000	time 1.5154 (1.5154)	loss 2.9406 (2.9406)	grad_norm 41.2528 (41.2528)	mem 14369MB
+[2022-12-20 18:52:18 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [292/300][10/74]	eta 0:00:59 lr 0.000000	time 0.8646 (0.9273)	loss 2.2406 (2.8103)	grad_norm 100.8352 (120.2133)	mem 14369MB
+[2022-12-20 18:52:27 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [292/300][20/74]	eta 0:00:48 lr 0.000000	time 0.8681 (0.9000)	loss 2.8718 (2.8677)	grad_norm 98.8066 (116.3875)	mem 14369MB
+[2022-12-20 18:52:35 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [292/300][30/74]	eta 0:00:39 lr 0.000000	time 0.8749 (0.8908)	loss 3.1826 (2.9450)	grad_norm 76.2942 (110.0540)	mem 14369MB
+[2022-12-20 18:52:44 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [292/300][40/74]	eta 0:00:30 lr 0.000000	time 0.8847 (0.8874)	loss 2.6206 (3.0291)	grad_norm 121.6938 (114.1884)	mem 14369MB
+[2022-12-20 18:52:53 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [292/300][50/74]	eta 0:00:21 lr 0.000000	time 0.8814 (0.8857)	loss 4.4611 (3.1798)	grad_norm 87.2339 (116.5862)	mem 14369MB
+[2022-12-20 18:53:02 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [292/300][60/74]	eta 0:00:12 lr 0.000000	time 0.8777 (0.8852)	loss 3.0829 (3.1952)	grad_norm 60.6989 (119.4207)	mem 14369MB
+[2022-12-20 18:53:10 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [292/300][70/74]	eta 0:00:03 lr 0.000000	time 0.8737 (0.8842)	loss 2.9061 (3.1251)	grad_norm 95.2807 (118.3834)	mem 14369MB
+[2022-12-20 18:53:13 RepVGGplus-tinyism] (train_repvgg.py 217): INFO EPOCH 292 training takes 0:01:05
+[2022-12-20 18:53:15 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [293/300][0/74]	eta 0:01:54 lr 0.000000	time 1.5486 (1.5486)	loss 3.7981 (3.7981)	grad_norm 103.8044 (103.8044)	mem 14369MB
+[2022-12-20 18:53:23 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [293/300][10/74]	eta 0:00:59 lr 0.000000	time 0.8726 (0.9338)	loss 2.8982 (3.3619)	grad_norm 97.9782 (102.7748)	mem 14369MB
+[2022-12-20 18:53:32 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [293/300][20/74]	eta 0:00:48 lr 0.000000	time 0.8676 (0.9032)	loss 3.8456 (3.1393)	grad_norm 93.9754 (116.3395)	mem 14369MB
+[2022-12-20 18:53:41 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [293/300][30/74]	eta 0:00:39 lr 0.000000	time 0.8917 (0.8942)	loss 2.9309 (3.1718)	grad_norm 66.3903 (114.7226)	mem 14369MB
+[2022-12-20 18:53:50 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [293/300][40/74]	eta 0:00:30 lr 0.000000	time 0.8875 (0.8909)	loss 2.9412 (3.0980)	grad_norm 69.8523 (111.1782)	mem 14369MB
+[2022-12-20 18:53:58 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [293/300][50/74]	eta 0:00:21 lr 0.000000	time 0.8756 (0.8890)	loss 2.6496 (3.0951)	grad_norm 84.0925 (109.6236)	mem 14369MB
+[2022-12-20 18:54:07 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [293/300][60/74]	eta 0:00:12 lr 0.000000	time 0.8838 (0.8868)	loss 2.2266 (3.1496)	grad_norm 91.8203 (111.8123)	mem 14369MB
+[2022-12-20 18:54:16 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [293/300][70/74]	eta 0:00:03 lr 0.000000	time 0.8685 (0.8847)	loss 3.7995 (3.1385)	grad_norm 75.5258 (112.4708)	mem 14369MB
+[2022-12-20 18:54:18 RepVGGplus-tinyism] (train_repvgg.py 217): INFO EPOCH 293 training takes 0:01:05
+[2022-12-20 18:54:20 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [294/300][0/74]	eta 0:01:54 lr 0.000000	time 1.5476 (1.5476)	loss 3.3593 (3.3593)	grad_norm 153.8860 (153.8860)	mem 14369MB
+[2022-12-20 18:54:29 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [294/300][10/74]	eta 0:00:59 lr 0.000000	time 0.8773 (0.9353)	loss 3.0974 (3.2040)	grad_norm 62.2386 (101.5421)	mem 14369MB
+[2022-12-20 18:54:37 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [294/300][20/74]	eta 0:00:48 lr 0.000000	time 0.8694 (0.9054)	loss 3.5102 (3.2307)	grad_norm 324.4328 (122.6723)	mem 14369MB
+[2022-12-20 18:54:46 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [294/300][30/74]	eta 0:00:39 lr 0.000000	time 0.8687 (0.8965)	loss 2.6783 (3.0700)	grad_norm 125.7301 (121.0513)	mem 14369MB
+[2022-12-20 18:54:55 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [294/300][40/74]	eta 0:00:30 lr 0.000000	time 0.8630 (0.8905)	loss 2.3550 (3.0739)	grad_norm 82.9490 (118.0070)	mem 14369MB
+[2022-12-20 18:55:04 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [294/300][50/74]	eta 0:00:21 lr 0.000000	time 0.8691 (0.8870)	loss 3.4009 (3.1734)	grad_norm 107.4107 (118.6568)	mem 14369MB
+[2022-12-20 18:55:12 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [294/300][60/74]	eta 0:00:12 lr 0.000000	time 0.8738 (0.8843)	loss 3.2587 (3.1745)	grad_norm 75.6765 (117.7790)	mem 14369MB
+[2022-12-20 18:55:21 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [294/300][70/74]	eta 0:00:03 lr 0.000000	time 0.8627 (0.8828)	loss 4.8469 (3.1704)	grad_norm 97.2340 (118.2291)	mem 14369MB
+[2022-12-20 18:55:24 RepVGGplus-tinyism] (train_repvgg.py 217): INFO EPOCH 294 training takes 0:01:05
+[2022-12-20 18:55:25 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [295/300][0/74]	eta 0:01:52 lr 0.000000	time 1.5220 (1.5220)	loss 2.8543 (2.8543)	grad_norm 82.6898 (82.6898)	mem 14369MB
+[2022-12-20 18:55:34 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [295/300][10/74]	eta 0:00:59 lr 0.000000	time 0.8661 (0.9339)	loss 3.0974 (2.9525)	grad_norm 112.9170 (100.6226)	mem 14369MB
+[2022-12-20 18:55:43 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [295/300][20/74]	eta 0:00:48 lr 0.000000	time 0.8786 (0.9054)	loss 2.2464 (2.8809)	grad_norm 105.3131 (101.7205)	mem 14369MB
+[2022-12-20 18:55:51 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [295/300][30/74]	eta 0:00:39 lr 0.000000	time 0.8717 (0.8944)	loss 5.2867 (3.3090)	grad_norm 380.7125 (120.8405)	mem 14369MB
+[2022-12-20 18:56:00 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [295/300][40/74]	eta 0:00:30 lr 0.000000	time 0.8710 (0.8895)	loss 2.8660 (3.3403)	grad_norm 106.1777 (125.1173)	mem 14369MB
+[2022-12-20 18:56:09 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [295/300][50/74]	eta 0:00:21 lr 0.000000	time 0.8674 (0.8858)	loss 2.9202 (3.2857)	grad_norm 86.9054 (122.3430)	mem 14369MB
+[2022-12-20 18:56:18 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [295/300][60/74]	eta 0:00:12 lr 0.000000	time 0.8694 (0.8839)	loss 3.5729 (3.2314)	grad_norm 89.2201 (120.0981)	mem 14369MB
+[2022-12-20 18:56:26 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [295/300][70/74]	eta 0:00:03 lr 0.000000	time 0.8810 (0.8829)	loss 3.6524 (3.2153)	grad_norm 93.1611 (118.8504)	mem 14369MB
+[2022-12-20 18:56:29 RepVGGplus-tinyism] (train_repvgg.py 217): INFO EPOCH 295 training takes 0:01:05
+[2022-12-20 18:56:30 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [296/300][0/74]	eta 0:01:52 lr 0.000000	time 1.5253 (1.5253)	loss 2.4622 (2.4622)	grad_norm 118.6573 (118.6573)	mem 14369MB
+[2022-12-20 18:56:39 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [296/300][10/74]	eta 0:00:59 lr 0.000000	time 0.8746 (0.9344)	loss 2.5856 (3.1315)	grad_norm 95.4544 (107.0909)	mem 14369MB
+[2022-12-20 18:56:48 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [296/300][20/74]	eta 0:00:48 lr 0.000000	time 0.8691 (0.9044)	loss 2.9946 (3.1329)	grad_norm 72.4940 (107.7974)	mem 14369MB
+[2022-12-20 18:56:57 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [296/300][30/74]	eta 0:00:39 lr 0.000000	time 0.8687 (0.8935)	loss 3.4111 (3.3025)	grad_norm 52.8725 (107.4891)	mem 14369MB
+[2022-12-20 18:57:05 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [296/300][40/74]	eta 0:00:30 lr 0.000000	time 0.8688 (0.8893)	loss 2.3692 (3.1921)	grad_norm 153.3610 (110.5495)	mem 14369MB
+[2022-12-20 18:57:14 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [296/300][50/74]	eta 0:00:21 lr 0.000000	time 0.8876 (0.8863)	loss 2.5581 (3.2020)	grad_norm 98.8784 (115.0439)	mem 14369MB
+[2022-12-20 18:57:23 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [296/300][60/74]	eta 0:00:12 lr 0.000000	time 0.8927 (0.8848)	loss 3.2009 (3.1490)	grad_norm 147.0595 (117.5465)	mem 14369MB
+[2022-12-20 18:57:32 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [296/300][70/74]	eta 0:00:03 lr 0.000000	time 0.8896 (0.8837)	loss 2.8016 (3.1411)	grad_norm 110.5163 (116.3927)	mem 14369MB
+[2022-12-20 18:57:34 RepVGGplus-tinyism] (train_repvgg.py 217): INFO EPOCH 296 training takes 0:01:05
+[2022-12-20 18:57:36 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [297/300][0/74]	eta 0:01:53 lr 0.000000	time 1.5280 (1.5280)	loss 2.6390 (2.6390)	grad_norm 57.0713 (57.0713)	mem 14369MB
+[2022-12-20 18:57:44 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [297/300][10/74]	eta 0:00:59 lr 0.000000	time 0.8908 (0.9367)	loss 2.6484 (3.2060)	grad_norm 80.9096 (100.1986)	mem 14369MB
+[2022-12-20 18:57:53 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [297/300][20/74]	eta 0:00:48 lr 0.000000	time 0.8697 (0.9068)	loss 2.2459 (2.9774)	grad_norm 110.3909 (103.0779)	mem 14369MB
+[2022-12-20 18:58:02 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [297/300][30/74]	eta 0:00:39 lr 0.000000	time 0.8799 (0.8947)	loss 2.7392 (2.9825)	grad_norm 97.1517 (129.6603)	mem 14369MB
+[2022-12-20 18:58:11 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [297/300][40/74]	eta 0:00:30 lr 0.000000	time 0.8707 (0.8892)	loss 2.5755 (3.1397)	grad_norm 92.6562 (123.6405)	mem 14369MB
+[2022-12-20 18:58:19 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [297/300][50/74]	eta 0:00:21 lr 0.000000	time 0.8738 (0.8878)	loss 2.2074 (3.1236)	grad_norm 83.5892 (126.0389)	mem 14369MB
+[2022-12-20 18:58:28 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [297/300][60/74]	eta 0:00:12 lr 0.000000	time 0.8680 (0.8858)	loss 2.6769 (3.1625)	grad_norm 146.3468 (125.5518)	mem 14369MB
+[2022-12-20 18:58:37 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [297/300][70/74]	eta 0:00:03 lr 0.000000	time 0.8808 (0.8850)	loss 3.0018 (3.1845)	grad_norm 147.4070 (125.3651)	mem 14369MB
+[2022-12-20 18:58:39 RepVGGplus-tinyism] (train_repvgg.py 217): INFO EPOCH 297 training takes 0:01:05
+[2022-12-20 18:58:41 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [298/300][0/74]	eta 0:01:53 lr 0.000000	time 1.5277 (1.5277)	loss 3.8380 (3.8380)	grad_norm 92.2601 (92.2601)	mem 14369MB
+[2022-12-20 18:58:50 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [298/300][10/74]	eta 0:00:59 lr 0.000000	time 0.8680 (0.9322)	loss 3.1147 (3.1924)	grad_norm 138.0634 (129.7393)	mem 14369MB
+[2022-12-20 18:58:59 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [298/300][20/74]	eta 0:00:48 lr 0.000000	time 0.8741 (0.9057)	loss 3.0519 (3.0843)	grad_norm 122.4067 (125.6402)	mem 14369MB
+[2022-12-20 18:59:07 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [298/300][30/74]	eta 0:00:39 lr 0.000000	time 0.8848 (0.8978)	loss 2.8969 (3.2167)	grad_norm 48.9476 (121.8133)	mem 14369MB
+[2022-12-20 18:59:16 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [298/300][40/74]	eta 0:00:30 lr 0.000000	time 0.8661 (0.8928)	loss 2.7120 (3.1647)	grad_norm 150.7744 (118.4534)	mem 14369MB
+[2022-12-20 18:59:25 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [298/300][50/74]	eta 0:00:21 lr 0.000000	time 0.8731 (0.8888)	loss 3.3245 (3.1590)	grad_norm 83.9067 (118.3137)	mem 14369MB
+[2022-12-20 18:59:34 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [298/300][60/74]	eta 0:00:12 lr 0.000000	time 0.8714 (0.8857)	loss 3.0405 (3.1686)	grad_norm 111.1670 (117.3595)	mem 14369MB
+[2022-12-20 18:59:42 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [298/300][70/74]	eta 0:00:03 lr 0.000000	time 0.8674 (0.8839)	loss 2.7681 (3.1488)	grad_norm 121.5804 (118.5144)	mem 14369MB
+[2022-12-20 18:59:45 RepVGGplus-tinyism] (train_repvgg.py 217): INFO EPOCH 298 training takes 0:01:05
+[2022-12-20 18:59:46 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [299/300][0/74]	eta 0:01:52 lr 0.000000	time 1.5183 (1.5183)	loss 3.4693 (3.4693)	grad_norm 206.4333 (206.4333)	mem 14369MB
+[2022-12-20 18:59:55 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [299/300][10/74]	eta 0:00:59 lr 0.000000	time 0.8825 (0.9353)	loss 3.1217 (3.5947)	grad_norm 79.7846 (129.9762)	mem 14369MB
+[2022-12-20 19:00:04 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [299/300][20/74]	eta 0:00:48 lr 0.000000	time 0.8709 (0.9061)	loss 2.9975 (3.3127)	grad_norm 143.6288 (118.8194)	mem 14369MB
+[2022-12-20 19:00:13 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [299/300][30/74]	eta 0:00:39 lr 0.000000	time 0.8772 (0.8983)	loss 3.8310 (3.3911)	grad_norm 142.1542 (114.9473)	mem 14369MB
+[2022-12-20 19:00:21 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [299/300][40/74]	eta 0:00:30 lr 0.000000	time 0.8801 (0.8924)	loss 3.7968 (3.3436)	grad_norm 136.5171 (111.0764)	mem 14369MB
+[2022-12-20 19:00:30 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [299/300][50/74]	eta 0:00:21 lr 0.000000	time 0.8720 (0.8889)	loss 2.5652 (3.2926)	grad_norm 112.5203 (107.1265)	mem 14369MB
+[2022-12-20 19:00:39 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [299/300][60/74]	eta 0:00:12 lr 0.000000	time 0.8737 (0.8863)	loss 2.7114 (3.2298)	grad_norm 113.0044 (113.7891)	mem 14369MB
+[2022-12-20 19:00:48 RepVGGplus-tinyism] (train_repvgg.py 210): INFO Train: [299/300][70/74]	eta 0:00:03 lr 0.000000	time 0.8696 (0.8892)	loss 3.0518 (3.1444)	grad_norm 84.9558 (115.2925)	mem 14369MB
+[2022-12-20 19:00:50 RepVGGplus-tinyism] (train_repvgg.py 217): INFO EPOCH 299 training takes 0:01:05
+[2022-12-20 19:00:51 RepVGGplus-tinyism] (train_repvgg.py 119): INFO Training time 6:14:14
