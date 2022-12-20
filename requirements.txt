@@ -6,3 +6,4 @@ pycocotools
 opencv-python
 yacs
 termcolor
+ptflops
