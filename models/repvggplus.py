@@ -6,7 +6,7 @@
 
 import torch.nn as nn
 import torch.utils.checkpoint as checkpoint
-from se_block import SEBlock
+from .se_block import SEBlock
 import torch
 import numpy as np
 
@@ -279,13 +279,13 @@ class RepVGGplusPhen(nn.Module):
         self.stage0 = RepVGGplusBlock(in_channels=3, out_channels=in_channels, kernel_size=3, stride=2, padding=1, deploy=self.deploy, use_post_se=use_post_se)
         self.stage1 = RepVGGplusStage(in_channels, stage_channels[0], num_blocks[0], stride=2, use_checkpoint=use_checkpoint, use_post_se=use_post_se, deploy=deploy)
         self.stage2 = RepVGGplusStage(stage_channels[0], stage_channels[1], num_blocks[1], stride=2, use_checkpoint=use_checkpoint, use_post_se=use_post_se, deploy=deploy)
-        self.stage3 = RepVGGplusStage(stage_channels[1], stage_channels[2], num_blocks[2], stride=1, use_checkpoint=use_checkpoint, use_post_se=use_post_se, deploy=deploy)
+        #self.stage3 = RepVGGplusStage(stage_channels[1], stage_channels[2], num_blocks[2], stride=1, use_checkpoint=use_checkpoint, use_post_se=use_post_se, deploy=deploy)
 
     def forward(self, x):
         out = self.stage0(x)
         out = self.stage1(out)
         out = self.stage2(out)
-        out = self.stage3(out)
+        #out = self.stage3(out)
         return out
 
     def switch_repvggplus_to_deploy(self):
@@ -303,7 +303,7 @@ class RepVGGplusPhen(nn.Module):
 
 def create_RepVGGplus_phen64(deploy=False, use_checkpoint=False):
     return RepVGGplusPhen(num_blocks=[8, 14, 24, 1],
-                  width_multiplier=[2.5, 2.5, 2, 5], deploy=deploy, use_post_se=True,
+                  width_multiplier=[2.5, 2.5, 2.5, 5], deploy=deploy, use_post_se=True,
                       use_checkpoint=use_checkpoint)
 
 #   Will release more

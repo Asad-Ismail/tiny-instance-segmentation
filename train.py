@@ -19,11 +19,11 @@ datestring = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 parser = argparse.ArgumentParser()
 parser.add_argument("--dataset",default="hub://aismail2/cucumber_OD",help="Activeloop data path")
 parser.add_argument("--size",default=512,type=int,help="Image size used for training model")
-parser.add_argument("--epochs",default=500,type=int,help="Image size used for training model")
+parser.add_argument("--epochs",default=1000,type=int,help="Image size used for training model")
 parser.add_argument("--device", default="cuda",help="Device to Train Model")
-parser.add_argument("--batch_sz", default=4,type=int,help="Device to Train Model")
-parser.add_argument("--pretrain",default="",type=str,help="Pretrained weights")
-parser.add_argument("--model_arch",default="repvggplus", choices=['resnet', 'repvggplus'],type=str,help="Model Architecture")
+parser.add_argument("--batch_sz", default=24,type=int,help="Device to Train Model")
+parser.add_argument("--pretrain",default="./weights/RepVGGplus-L2pse-train256-acc84.06.pth",type=str,help="Pretrained weights")
+parser.add_argument("--model_arch",default="repvggplus", choices=['resnet', 'repvgg','repvggplus'],type=str,help="Model Architecture")
 parser.add_argument("--posencoding",default=True,type=bool,help="Positional Encoding")
 parser.add_argument("--outdir",default="./output",type=str,help="Output of weights")
 
@@ -47,16 +47,27 @@ assert os.path.exists(outdir), "Output dir does not exist"
 if modelarch=="resnet":
     from models.tinyism import tinyModel
     model=tinyModel(posEncoding=posencoding)
-elif modelarch=="repvggplus":
+    if pretrain:
+        print(f"Loading Pretrained Weights!!")
+        model.load_state_dict(torch.load(pretrain,map_location=torch.device('cpu')))
+elif modelarch=="repvgg":
     from models.repvgg_tinyism import tinyModel
     model=tinyModel(posEncoding=posencoding,deploy=False)
+    if pretrain:
+        print(f"Loading Pretrained Weights!!")
+        model.load_state_dict(torch.load(pretrain,map_location=torch.device('cpu')))
+elif modelarch=="repvggplus":
+    from models.repvggplus_tinyism import tinyModel
+    model=tinyModel(posEncoding=posencoding,deploy=False)
+    if pretrain:
+        print(f"Loading Pretrained Weights!!")
+        model.backbone.load_state_dict(torch.load(pretrain,map_location=torch.device('cpu')),strict=False)
 
-if pretrain:
-    model.load_state_dict(torch.load(pretrain,map_location=torch.device('cpu')))
 
 device=torch.device(dname)
 model.to(device)
-optimizer = optim.Adam(model.parameters(), lr=1e-4)
+optimizer = optim.Adam(model.parameters(), lr=1e-3)
+scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=100, gamma=0.1)
 model.train()
 
 if __name__=="__main__":
@@ -64,7 +75,7 @@ if __name__=="__main__":
     data=dLoader(ds=ds)
     data_loader = DataLoader(dataset=data, batch_size=BATCH_SIZE,num_workers=1,collate_fn=collate_batch,shuffle=True)
     visidx=10
-    saveepoch=2
+    saveepoch=10
     for epoch in range(0,epochs):  # loop over the dataset multiple times
         running_loss = 0.0
         for i,batch in tqdm(enumerate(data_loader)):
@@ -96,12 +107,12 @@ if __name__=="__main__":
             
             if i % visidx == visidx-1:
                 print(f'[{epoch + 1}, {i + 1:5d}] Running Loss: {running_loss / visidx:.3f}')
-                #print(f"LR,{scheduler._last_lr}")
+                print(f"LR,{scheduler._last_lr}")
                 for k,v in losses.items():
                     print(f"{k}: {v.item()}")
                 running_loss = 0.0
                 
-            #scheduler.step()
+        scheduler.step()
         if epoch % saveepoch == 1:
             PATH=f"{outdir}/{epoch}.pth"
             torch.save(model.state_dict(), PATH)

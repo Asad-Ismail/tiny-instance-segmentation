@@ -8,7 +8,7 @@ import sys,os
 sys.path.append(os.path.abspath('../losses'))
 from losses import *
 #from .repvgg import create_RepVGGplus_by_name
-from .repvgg import get_RepVGG_func_by_name
+from .repvggplus import get_RepVGGplus_func_by_name
 
 
 def min_max_norm(x,a,b):
@@ -69,12 +69,12 @@ def posEncoding(x):
 
 
 class tinyModel(nn.Module):
-    def __init__(self,grid_sz=64,archname="RepVGG-A0-Pheno",deploy=False,posEncoding=True) -> None:
+    def __init__(self,grid_sz=64,archname="RepVGGplus-phen64",deploy=False,posEncoding=True) -> None:
         super(tinyModel, self).__init__()
         interchn=256
         self.grid_sz=grid_sz
         self.posEncoding=posEncoding
-        repvgg_fn = get_RepVGG_func_by_name(archname)
+        repvgg_fn = get_RepVGGplus_func_by_name(archname)
         self.backbone = repvgg_fn(deploy)
         nheadlayers=6
         #bb_channel=self.backbone.layer4[1].conv3.out_channels

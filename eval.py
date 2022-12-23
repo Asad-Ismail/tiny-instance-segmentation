@@ -12,7 +12,7 @@ from ptflops import get_model_complexity_info
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--weight_path",default="./weights/repvggplus_weights.pth",type=str,help="model weights path")
-parser.add_argument("--model_arch",default="repvggplus", choices=['resnet', 'repvggplus'],type=str,help="Model Architecture")
+parser.add_argument("--model_arch",default="repvgg", choices=['resnet', 'repvgg'],type=str,help="Model Architecture")
 parser.add_argument("--posencoding",default=True,type=bool,help="Positional Encoding")
 parser.add_argument("--modelingo",default=True,type=bool,help="Model FLOPS and params")
 
@@ -27,7 +27,7 @@ if modelarch=="resnet":
     from models.tinyism import tinyModel
     model=tinyModel(posEncoding=posencoding)
     model.load_state_dict(torch.load(weightpath,map_location=torch.device('cpu')))
-elif modelarch=="repvggplus":
+elif modelarch=="repvgg":
     from models.repvgg_tinyism import tinyModel
     model=tinyModel(posEncoding=posencoding,deploy=False)
     model.load_state_dict(torch.load(weightpath,map_location=torch.device('cpu'))["model"])

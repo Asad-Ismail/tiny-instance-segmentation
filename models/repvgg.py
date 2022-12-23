@@ -7,7 +7,7 @@ import torch.nn as nn
 import numpy as np
 import torch
 import copy
-from se_block import SEBlock
+from .se_block import SEBlock
 import torch.utils.checkpoint as checkpoint
 
 def conv_bn(in_channels, out_channels, kernel_size, stride, padding, groups=1):
@@ -191,6 +191,40 @@ class RepVGG(nn.Module):
         out = self.linear(out)
         return out
 
+class RepVGGBackbone(nn.Module):
+
+    def __init__(self, num_blocks, width_multiplier=None, override_groups_map=None, deploy=False, use_se=False, use_checkpoint=False):
+        super(RepVGGBackbone, self).__init__()
+        assert len(width_multiplier) == 4
+        self.deploy = deploy
+        self.use_se = use_se
+        self.use_checkpoint = use_checkpoint
+
+        self.in_planes = min(64, int(64 * width_multiplier[0]))
+        self.stage0 = RepVGGBlock(in_channels=3, out_channels=self.in_planes, kernel_size=3, stride=2, padding=1, deploy=self.deploy, use_se=self.use_se)
+        self.cur_layer_idx = 1
+        self.stage1 = self._make_stage(int(64 * width_multiplier[0]), num_blocks[0], stride=2)
+        self.stage2 = self._make_stage(int(128 * width_multiplier[1]), num_blocks[1], stride=2)
+        self.stage3 = self._make_stage(int(256 * width_multiplier[2]), num_blocks[2], stride=1)
+        self.stage4 = self._make_stage(int(512 * width_multiplier[3]), num_blocks[3], stride=1)
+
+    def _make_stage(self, planes, num_blocks, stride):
+        strides = [stride] + [1]*(num_blocks-1)
+        blocks = []
+        for stride in strides:
+            cur_groups = 1
+            blocks.append(RepVGGBlock(in_channels=self.in_planes, out_channels=planes, kernel_size=3,
+                                      stride=stride, padding=1, groups=cur_groups, deploy=self.deploy, use_se=self.use_se))
+            self.in_planes = planes
+            self.cur_layer_idx += 1
+        return nn.ModuleList(blocks)
+
+    def forward(self, x):
+        out = self.stage0(x)
+        for stage in (self.stage1, self.stage2, self.stage3, self.stage4):
+            for block in stage:
+                 out = block(out)
+        return out
 
 optional_groupwise_layers = [2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26]
 g2_map = {l: 2 for l in optional_groupwise_layers}
@@ -199,6 +233,9 @@ g4_map = {l: 4 for l in optional_groupwise_layers}
 def create_RepVGG_A0(deploy=False, use_checkpoint=False):
     return RepVGG(num_blocks=[2, 4, 14, 1], num_classes=1000,
                   width_multiplier=[0.75, 0.75, 0.75, 2.5], override_groups_map=None, deploy=deploy, use_checkpoint=use_checkpoint)
+
+def create_RepVGG_A0_Pheno(deploy=False, use_checkpoint=False):
+    return RepVGGBackbone(num_blocks=[2, 4, 14, 1],width_multiplier=[0.75, 0.75, 0.75, 1], override_groups_map=None, deploy=deploy, use_checkpoint=use_checkpoint)
 
 def create_RepVGG_A1(deploy=False, use_checkpoint=False):
     return RepVGG(num_blocks=[2, 4, 14, 1], num_classes=1000,
@@ -257,6 +294,7 @@ def create_RepVGG_D2se(deploy=False, use_checkpoint=False):
 
 func_dict = {
 'RepVGG-A0': create_RepVGG_A0,
+'RepVGG-A0-Pheno': create_RepVGG_A0_Pheno,
 'RepVGG-A1': create_RepVGG_A1,
 'RepVGG-A2': create_RepVGG_A2,
 'RepVGG-B0': create_RepVGG_B0,

@@ -16,7 +16,7 @@ import os
 parser = argparse.ArgumentParser()
 parser.add_argument("--image",default="test.png",help="Input Image")
 parser.add_argument("--size",default=512,type=int,help="Image size used for training model")
-parser.add_argument("--model_arch",default="repvggplus", choices=['resnet', 'repvggplus'],type=str,help="Model Architecture")
+parser.add_argument("--model_arch",default="repvgg", choices=['resnet', 'repvgg'],type=str,help="Model Architecture")
 parser.add_argument("--posencoding",default=True,type=bool,help="Positional Encoding")
 parser.add_argument("--vispath", default="vis_results",help="Write visualizations to this location")
 parser.add_argument("--weight_path",default="./weights/repvggplus_weights.pth",type=str,help="Weights of training model")
@@ -38,7 +38,7 @@ if modelarch=="resnet":
     from models.tinyism import tinyModel
     model=tinyModel(posEncoding=posencoding)
     model.load_state_dict(torch.load(weightpath,map_location=torch.device('cpu')))
-elif modelarch=="repvggplus":
+elif modelarch=="repvgg":
     from models.repvgg_tinyism import tinyModel
     model=tinyModel(posEncoding=posencoding,deploy=True)
     model.load_state_dict(torch.load(weightpath,map_location=device))

@@ -31,8 +31,8 @@ def parse_option():
     )
 
     # easy config modification
-    parser.add_argument('--arch', default="RepVGGplus-tinyism", type=str, help='arch name')
-    parser.add_argument('--batch-size', default=4, type=int, help="batch size for single GPU")
+    parser.add_argument('--arch', default="RepVGG-tinyism", type=str, help='arch name')
+    parser.add_argument('--batch-size', default=16, type=int, help="batch size for single GPU")
     parser.add_argument('--data-path', default='hub://aismail2/cucumber_OD', type=str, help='path to dataset')
     parser.add_argument('--scales-path', default=None, type=str, help='path to the trained Hyper-Search model')
     parser.add_argument('--zip', action='store_true', help='use zipped dataset instead of folder dataset')

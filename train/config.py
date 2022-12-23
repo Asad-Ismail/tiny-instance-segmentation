@@ -59,10 +59,10 @@ _C.MODEL.LABEL_SMOOTHING = 0.1
 # -----------------------------------------------------------------------------
 _C.TRAIN = CN()
 _C.TRAIN.START_EPOCH = 0
-_C.TRAIN.EPOCHS = 300
+_C.TRAIN.EPOCHS = 800
 _C.TRAIN.WARMUP_EPOCHS = 20
 _C.TRAIN.WEIGHT_DECAY = 0.05
-_C.TRAIN.BASE_LR = 5e-4
+_C.TRAIN.BASE_LR = 5e-3
 _C.TRAIN.WARMUP_LR = 0.0
 _C.TRAIN.MIN_LR = 0.0
 # Clip gradient norm
