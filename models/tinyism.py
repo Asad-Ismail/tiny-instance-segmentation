@@ -35,6 +35,11 @@ def process_preds(preds,grid_sz=64,cat_th=0.4):
     bidx=nzidx[:,0]    
     idx=nzidx[:,1]
     jdx=nzidx[:,2]
+    if (len(idx)>500):
+        ## Too many objs detected something not right keep only n currently random change to top n TODO
+        bidx=bidx[:100]
+        idx=idx[:100]
+        jdx=jdx[:100]
     mskidx=nzidx[:,1]*grid_sz+nzidx[:,2]
     ## Select boxes
     pred_boxes=preds["boxes"].cpu()
@@ -159,4 +164,4 @@ class tinyModel(nn.Module):
             pred_msks=self.seg(pred_msks)
             pred_msks=pred_msks.sigmoid()
             preds["masks"]=pred_msks
-            return pred_msks
+            return preds["labels"],pred_msks
