@@ -6,7 +6,7 @@ import torch.nn as nn
 from torchvision.ops import roi_align
 import sys,os
 sys.path.append(os.path.abspath('../losses'))
-from losses import *
+from loss import *
 
 def min_max_norm(x,a,b):
     min_x=x.min()
@@ -107,9 +107,10 @@ class tinyModel(nn.Module):
         #self.upsample=Upsample(256)
         self.seg=nn.Conv2d(interchn,1,1,padding=0)    
         
-    def forward(self,inp: dict) -> torch.Tensor:
+    def forward(self,inp) -> torch.Tensor:
         ## For training expects the labels to be present also
-        img=inp["img"]
+        #img=inp["img"]
+        img=inp
         x=self.backbone(img)
         if self.posEncoding:
             x=posEncoding(x)
@@ -151,11 +152,11 @@ class tinyModel(nn.Module):
         else:
             preds=process_preds(preds)
             boxlist=[preds["boxes"]]
-            pred_msks=roi_align(inp["img"],boxlist,output_size=64)
+            pred_msks=roi_align(img,boxlist,output_size=64)
             if self.posEncoding:
                 pred_msks=posEncoding(pred_msks)
             pred_msks=self.seg_head(pred_msks)
             pred_msks=self.seg(pred_msks)
             pred_msks=pred_msks.sigmoid()
             preds["masks"]=pred_msks
-            return preds
+            return pred_msks
