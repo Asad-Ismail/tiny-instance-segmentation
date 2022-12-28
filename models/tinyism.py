@@ -27,20 +27,25 @@ def decode_boxes(cx,cy,pred_szs,pred_offs,stride):
     result= torch.stack([x_min, y_min, x_max, y_max], axis=-1)
     return result.float()
 
-def process_preds(preds,grid_sz=64,cat_th=0.4): 
+def process_preds(preds,grid_sz=64,cat_th=0.4,maxdets=200): 
+    ## Support pred batch of one see bidx calculation TODO fix for batch size of higher value
     pred_cats=preds["center"].cpu()
     pred_cats=pred_cats.squeeze(0).sigmoid()
-    pred_cats[pred_cats<cat_th]=0   
-    nzidx=torch.nonzero(pred_cats)
+    pred_cats[pred_cats<cat_th]=0 
+    ## Keep only top n
+    flatten_preds=pred_cats.flatten(start_dim=1)
+    srtd, indices = torch.sort(flatten_preds,descending=True)  
+    nzidx=torch.nonzero(srtd)
     bidx=nzidx[:,0]    
-    idx=nzidx[:,1]
-    jdx=nzidx[:,2]
-    if (len(idx)>500):
-        ## Too many objs detected something not right keep only n currently random change to top n TODO
-        bidx=bidx[:100]
-        idx=idx[:100]
-        jdx=jdx[:100]
-    mskidx=nzidx[:,1]*grid_sz+nzidx[:,2]
+    idx=torch.div(indices[:,nzidx[:,1]],grid_sz,rounding_mode="floor").squeeze(0)
+    jdx=(indices[:,nzidx[:,1]]%grid_sz).squeeze(0)
+    if len(bidx)>maxdets:
+        print(f"Excess objects detected Truncating!!")
+        bidx=bidx[:maxdets]
+        idx=idx[:maxdets]
+        jdx=jdx[:maxdets]
+
+    mskidx=idx*grid_sz+jdx
     ## Select boxes
     pred_boxes=preds["boxes"].cpu()
     pred_offs=preds["offs"].cpu()
