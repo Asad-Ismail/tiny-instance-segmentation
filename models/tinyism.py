@@ -39,7 +39,7 @@ def process_preds(preds,grid_sz=64,cat_th=0.4,maxdets=200):
     bidx=nzidx[:,0]    
     idx=torch.div(indices[:,nzidx[:,1]],grid_sz,rounding_mode="floor").squeeze(0)
     jdx=(indices[:,nzidx[:,1]]%grid_sz).squeeze(0)
-    if len(bidx)>maxdets:
+    if torch.tensor(bidx.size())>maxdets:
         print(f"Excess objects detected Truncating!!")
         bidx=bidx[:maxdets]
         idx=idx[:maxdets]
@@ -49,8 +49,8 @@ def process_preds(preds,grid_sz=64,cat_th=0.4,maxdets=200):
     ## Select boxes
     pred_boxes=preds["boxes"].cpu()
     pred_offs=preds["offs"].cpu()
-    pred_boxes=pred_boxes[bidx,idx,jdx,:].detach().numpy()
-    pred_offs=pred_offs[bidx,idx,jdx,:].detach().numpy()
+    pred_boxes=pred_boxes[bidx,idx,jdx,:].detach()
+    pred_offs=pred_offs[bidx,idx,jdx,:].detach()
     pred_boxes=decode_boxes(jdx,idx,pred_boxes,pred_offs,8.0)
     scores=pred_cats[bidx,idx,jdx]
     labels=torch.ones_like(scores).to(torch.long) 
@@ -169,4 +169,4 @@ class tinyModel(nn.Module):
             pred_msks=self.seg(pred_msks)
             pred_msks=pred_msks.sigmoid()
             preds["masks"]=pred_msks
-            return preds["labels"],pred_msks
+            return (preds["labels"],pred_msks.squeeze(1))

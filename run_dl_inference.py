@@ -11,15 +11,16 @@ import argparse
 from torch.utils.data import DataLoader
 import deeplake as hub
 import os
+from datasets.data_loader import DataLoader as dLoader
 
 # Parse Args
 parser = argparse.ArgumentParser()
 parser.add_argument("--image",default="test.png",help="Input Image")
 parser.add_argument("--size",default=512,type=int,help="Image size used for training model")
-parser.add_argument("--model_arch",default="repvgg", choices=['resnet', 'repvgg'],type=str,help="Model Architecture")
+parser.add_argument("--model_arch",default="resnet", choices=['resnet', 'repvgg'],type=str,help="Model Architecture")
 parser.add_argument("--posencoding",default=True,type=bool,help="Positional Encoding")
 parser.add_argument("--vispath", default="vis_results",help="Write visualizations to this location")
-parser.add_argument("--weight_path",default="./weights/repvggplus_weights.pth",type=str,help="Weights of training model")
+parser.add_argument("--weight_path",default="./weights/resnet18_inst.pth",type=str,help="Weights of training model")
 args = parser.parse_args()
 
 img_path = args.image
@@ -27,7 +28,7 @@ img_sz = args.size
 vispath = args.vispath
 weightpath= args.weight_path
 modelarch=args.model_arch
-posencoding=args.posEncoding
+posencoding=args.posencoding
 # Vis path is vispath + model arch
 vispath+="/"+modelarch
 os.makedirs(vispath,exist_ok=True)
@@ -50,6 +51,7 @@ if __name__=="__main__":
     src="hub://aismail2/cucumber_OD"
     ds = hub.load(src)
     print(f"The size of Test Loader is {len(ds)}")
+    data=dLoader(ds=ds)
     test_loader = DataLoader(dataset=data,  batch_size=1,num_workers=4, shuffle=False)
     for i,batch in tqdm(enumerate(test_loader)):
         preds=model(batch)

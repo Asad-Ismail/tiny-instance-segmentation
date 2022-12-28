@@ -96,6 +96,12 @@ class DataLoader(data.Dataset):
     def getData(self,ds):
         for i,d in tqdm(enumerate(ds)):
             image=d.images.numpy()
+            if i==100:
+                cv2.imwrite("test2.png",image)
+            if i==280:
+                cv2.imwrite("test3.png",image)
+            if i==240:
+                cv2.imwrite("test4.png",image)
             image=cv2.resize(image,(self.img_sz,self.img_sz))
             masks=d.masks.numpy().astype(np.uint8)*255
             img_cs=set(())
