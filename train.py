@@ -12,7 +12,7 @@ import torch.optim as optim
 from datasets.data_loader import DataLoader as dLoader
 from datasets.data_loader import collate_batch
 import os, datetime
-from models.tinyism import tinyModel
+#from models.tinyism import tinyModel
 from torch.utils.data import DataLoader
 datestring = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
@@ -21,7 +21,7 @@ parser.add_argument("--dataset",default="hub://aismail2/cucumber_OD",help="Activ
 parser.add_argument("--size",default=512,type=int,help="Image size used for training model")
 parser.add_argument("--epochs",default=1000,type=int,help="Image size used for training model")
 parser.add_argument("--device", default="cuda",help="Device to Train Model")
-parser.add_argument("--batch_sz", default=24,type=int,help="Device to Train Model")
+parser.add_argument("--batch_sz", default=2,type=int,help="Device to Train Model")
 parser.add_argument("--pretrain",default="./weights/RepVGGplus-L2pse-train256-acc84.06.pth",type=str,help="Pretrained weights")
 parser.add_argument("--model_arch",default="repvggplus", choices=['resnet', 'repvgg','repvggplus'],type=str,help="Model Architecture")
 parser.add_argument("--posencoding",default=True,type=bool,help="Positional Encoding")

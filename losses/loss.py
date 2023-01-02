@@ -42,13 +42,13 @@ def prepare_data(gts,preds,stride=8,device="cpu"):
         pboxes=torch.hstack((pboxesmin,pboxesmax))
         fil_tgt_box.append(pboxes)
 
-    tgt_box=torch.concatenate(fil_tgt_box).to(device)
-    tgt_msks=torch.concatenate(fil_gt_msks).to(device)
+    tgt_box=torch.concat(fil_tgt_box).to(device)
+    tgt_msks=torch.concat(fil_gt_msks).to(device)
     
-    pred_szs=torch.concatenate(fil_pred_szs).to(device)
-    pred_offs=torch.concatenate(fil_pred_offs).to(device)
+    pred_szs=torch.concat(fil_pred_szs).to(device)
+    pred_offs=torch.concat(fil_pred_offs).to(device)
     
-    tgt_offs=torch.concatenate(fil_gt_offs).to(device)
+    tgt_offs=torch.concat(fil_gt_offs).to(device)
     
     return pred_szs,tgt_box,pred_offs,tgt_offs,tgt_msks,fil_gt_box
 

@@ -33,7 +33,7 @@ def decode_boxes(cx,cy,pred_szs,pred_offs,stride):
 def process_preds(preds,grid_sz=64,cat_th=0.10): 
     pred_cats=preds["center"].cpu()
     pred_cats=pred_cats.squeeze(0).sigmoid()
-    print(f"Min and Max cat are {pred_cats.min()}, {pred_cats.max()}")
+    #print(f"Min and Max cat are {pred_cats.min()}, {pred_cats.max()}")
     pred_cats[pred_cats<cat_th]=0  
     nzidx=torch.nonzero(pred_cats)
     bidx=nzidx[:,0]    
@@ -79,7 +79,7 @@ class tinyModel(nn.Module):
         nheadlayers=6
         #bb_channel=self.backbone.layer4[1].conv3.out_channels
         #bb_channels=self.backbone.stage3.blocks[23].rbr_1x1.conv.out_channels
-        bb_channels=512
+        bb_channels=320
         if posEncoding:
             bb_channels+=2
         ## Classification Head
@@ -175,6 +175,7 @@ if __name__=="__main__":
     img=torch.randn((1,3,512,512))
     model=tinyModel(posEncoding=True)
     model.eval()
+    batch={}
     batch["img"]=img
     preds=model(batch)
     print(preds)
