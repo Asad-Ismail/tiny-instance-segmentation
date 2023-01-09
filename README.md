@@ -30,7 +30,7 @@ Purpose of Tiny net is not just another research project only but also used in r
 
 ## Support
 
-| **General**  | [asad.ismail@bayer.com](mailto:asad.ismail@bayer.com@bayer.com) |
+| **General**  | [asad.ismail@bayer.com](mailto:asadismaeel@gmail.com) |
 |:------:|:-------------|
 | **Bug Report** | [See Issues](https://github.com/bayer-int/VegRD_APD_Fruit_Phenotyping/issues) • [Open Bug Report](https://github.com/bayer-int/VegRD_APD_Fruit_Phenotyping/issues/new?assignees=&labels=bug&template=bug.yml&title=%3Ctitle%3E) |
 | **Feature Request** | [See Issues](https://github.com/bayer-int/VegRD_APD_Fruit_Phenotyping/issues) • [Open Feature Request](https://github.com/bayer-int/VegRD_APD_Fruit_Phenotyping/issues/new?assignees=&labels=enhancement&template=feature.yml&title=%3Ctitle%3E)  |
