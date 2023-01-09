@@ -1,5 +1,4 @@
 # Tiny-Instance-Segmentation
-
 <div align="center">
 <img src="imgs/logo_tinynet.jpeg" width=200px>
 <h1 align="center">Tiny Net</h1>
@@ -9,7 +8,6 @@ A ground up implementation of instance segmentation netowrk in pytorch with end 
 [Quick Start](#Quick-Start) •
 [Documentation](https://docs.int.bayer.com/-/VegRD_APD_Fruit_Phenotyping/) •
 [Support](#support)
-
 </div>
 
 ## Abstract 
