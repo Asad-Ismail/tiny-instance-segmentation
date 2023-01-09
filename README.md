@@ -1,7 +1,7 @@
 # Tiny-Instance-Segmentation
 
 <div align="center">
-<img src="docs/img/logo_tinynet.jpeg" width=200px>
+<img src="imgs/logo_tinynet.jpeg" width=200px>
 <h1 align="center">Vegetables Fruit Phenotyping</h1>
 
 A ground up implementation of instance segmentation netowrk in pytorch with end goal of deploying in low powered edge device like Intel neural compute stick and rasberry pie.
